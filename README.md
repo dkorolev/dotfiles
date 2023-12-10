@@ -7,8 +7,13 @@ Since the repo is self-explanatory.
 This is slow, but has no dependencies.
 
 ```
-git clone --depth 1 --recurse-submodules --shallow-submodules https://github.com/Valloric/YouCompleteMe  ~/.vim/pack/plugins/opt/YouCompleteMe)
-(cd /home/dev/.vim/pack/plugins/opt/YouCompleteMe; ./install.py --all)
+# Clone, everything, shallow.
+git clone --depth 1 --recurse-submodules --shallow-submodules https://github.com/Valloric/YouCompleteMe  ~/.vim/pack/plugins/opt/YouCompleteMe
+
+# NOTE(dkorolev): `--all` can be replaced by `--clangd-completer` or `--clang-completer`, or even `--Rust` or `--Go`.
+(cd ~/.vim/pack/plugins/opt/YouCompleteMe; ./install.py --all)
+
+# NOTE(dkorolev): To complete the above, `set rtp+=~/.vim/pack/plugins/opt/YouCompleteMe` is required in `.vimrc`.
 ```
 
 ## Headers for `ycm`

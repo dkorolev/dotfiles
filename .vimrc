@@ -20,13 +20,13 @@ set wildignore=*.o,*~,*.pyc
 " This beauty remembers where you were the last time you edited the file, and returns to the same position.
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
-" Highlight JSON as javascript -- usefull if you don't want to load json.vim
+" Highlight JSON as JavaScript, useful to avoid loading `json.vim`.
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
-"Trim trailing whitespace in javascript files
+" Trim trailing whitespace in JavaScript files.
 autocmd BufWritePre *.js normal m`:%s/\s\+$//e ``
 
-"Indentation
+" Indentation
 set smartindent
 set autoindent
 set expandtab

@@ -14,13 +14,14 @@ for line in sys.stdin:
 for line in lines:
   black = None
   for i in range(max_width):
-    if i >= len(line) or line[i] == "#":
+    if i < len(line) and line[i] == "#":
       if not black == True:
         black = True
         print(Back.BLACK, end="")
+      print("#", end="")
     else:
       if not black == False:
         black = False
         print(Back.WHITE, end="")
-    print(" ", end="")
+      print(" ", end="")
   print(Style.RESET_ALL)

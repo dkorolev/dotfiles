@@ -8,6 +8,9 @@ bindkey  "^[[3~"  delete-char
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
 
+# Do not make sounds on tab completion in WSL.
+unsetopt beep
+
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.bash_zsh_history

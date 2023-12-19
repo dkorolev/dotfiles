@@ -49,7 +49,7 @@ precmd() {
 
 setopt prompt_subst
 
-prompt='%F{#0080ff}%d/%f ${vcs_info_msg_0_}$ '
+prompt='[%F{grey}%m%f] %F{#0080ff}%d/%f ${vcs_info_msg_0_}$ '
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

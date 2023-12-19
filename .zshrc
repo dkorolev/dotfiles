@@ -8,6 +8,9 @@ bindkey  "^[[3~"  delete-char
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
 
+# Do not make sounds on tab completion in WSL.
+unsetopt beep
+
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.bash_zsh_history
@@ -46,7 +49,7 @@ precmd() {
 
 setopt prompt_subst
 
-prompt='%F{blue}%d/%f ${vcs_info_msg_0_}$ '
+prompt='%F{#0080ff}%d/%f ${vcs_info_msg_0_}$ '
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

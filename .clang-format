@@ -1,0 +1,14 @@
+BasedOnStyle: Google
+ColumnLimit: 120
+
+BinPackParameters: false
+BinPackArguments: false
+SortIncludes: false
+
+AllowShortLambdasOnASingleLine: All
+AllowShortFunctionsOnASingleLine: None
+MaxEmptyLinesToKeep: 1
+SpaceInEmptyParentheses: false
+PointerAlignment: Left
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+SpacesBeforeTrailingComments: 2

@@ -2,7 +2,9 @@
 #
 # Usage: qrencode -t ascii "Test string!" | python3 ~/fmtqr.py
 #
-# Require `pip install colorama`.
+# Require `pip install colorama`, or `sudo apt-get install python3-colorama` on Ubuntu.
+#
+# TODO(dkorolev): Don't print '#'-s in Android/Termux, doesn't work as intended.
 
 import sys 
 from colorama import Back, Style

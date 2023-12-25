@@ -11,6 +11,7 @@ RUN apt-get -y update
 
 RUN DEBIAN_FRONTEND=noninteractive TZ=UTC apt-get -y install tzdata
 
+# TODO(dkorolev): Clone `dotfiles` and use `apk-packages.txt` from there.
 RUN apt-get install -y git zsh vim curl jq screen sudo npm wget build-essential cmake python3 python3-dev golang nodejs default-jdk
 
 RUN useradd -rm -d /home/dev -s /usr/bin/zsh -g root -G sudo -u 1001 dev

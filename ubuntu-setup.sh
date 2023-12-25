@@ -18,7 +18,7 @@ else
   git clone https://github.com/dimacurrentai/dotfiles ~/.dotfiles
 
   ALL_APT_PACKAGES=""
-  for i in $(cat .dotfiles/apt-packages.txt); do ALL_APT_PACKAGES="$ALL_APT_PACKAGES $i"; done
+  for i in $(cat .dotfiles/apt-packages.txt | grep -v '^#'); do ALL_APT_PACKAGES="$ALL_APT_PACKAGES $i"; done
 
   time sudo apt-get install -y $ALL_APT_PACKAGES
 

@@ -1,26 +1,43 @@
-zsh git vim curl wget build-essential cmake
-screen
+zsh git vim curl wget
+
+build-essential
+cmake
+clang-format
+
+tree
 jq
+htop
+cloc
+screen
+
+inetutils-tools
+net-tools
+
 python3 python3-dev
 golang nodejs
+
 default-jdk
 gradle
-libncurses5-dev
-podman
-tree
-x11-apps
+
 libncurses-dev
-gnuplot plotutils
+libncurses5-dev
+
+podman
+
 openssh-server
+x11-apps
+
 meld
+gnuplot
+plotutils
+
 qrencode
 python3-pip
 python3-colorama
+
 lcov
-htop
-inetutils-tools
-net-tools
-cloc
-clang-format
+
 android-sdk
 sdkmanager
+
+# scrcpy?

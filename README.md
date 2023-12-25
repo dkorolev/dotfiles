@@ -4,6 +4,8 @@ Since the repo is self-explanatory.
 
 ## Installing `ycm`
 
+*Note: Obsoleted by `ubuntu-setup.sh`.*
+
 This is slow, but has no dependencies.
 
 ```
@@ -17,6 +19,8 @@ git clone --depth 1 --recurse-submodules --shallow-submodules https://github.com
 ```
 
 ## Headers for `ycm`
+
+*Note: Obsoleted by `ubuntu-setup.sh`.*
 
 ```
 echo | clang -v -E -x c++ -
@@ -55,6 +59,8 @@ let g:ycm_clangd_binary_path = '/usr/bin/clangd'
 ```
 
 ## `nvm`
+
+*TODO(dkorolev): Add into `ubuntu-setup.sh`?*
 
 ```
 curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh -o install_nvm.sh

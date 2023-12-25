@@ -49,5 +49,6 @@ set matchpairs+=<:>
 set visualbell
 
 set rtp+=~/.vim/pack/plugins/opt/YouCompleteMe
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 set encoding=utf-8

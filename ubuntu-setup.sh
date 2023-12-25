@@ -15,7 +15,7 @@ else
   sudo apt-get -y update
   sudo apt-get install -y git
 
-  git clone https://github.com/dimacurrentai/dotfiles ~/.dotfiles
+  git clone https://github.com/dkorolev/dotfiles ~/.dotfiles
 
   ALL_APT_PACKAGES=""
   for i in $(cat .dotfiles/apt-packages.txt | grep -v '^#'); do ALL_APT_PACKAGES="$ALL_APT_PACKAGES $i"; done

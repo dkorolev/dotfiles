@@ -4,8 +4,6 @@
 #
 # Testing under WSL, because why not?
 
-# TODO tomorrow: Add `../current` and `../../current` into the YCM header path.
-
 if ! ( [ "$EUID" -eq 0 ] || SUDO_ASKPASS=/bin/false sudo -A /bin/true >/dev/null 2>&1) ; then
 
   echo 'Need `sudo`, or run as `root.'

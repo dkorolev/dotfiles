@@ -18,6 +18,7 @@ python3 python3-dev
 golang
 
 nodejs
+npm
 
 # nvm into `ubuntu-setup.sh`?
 # curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh -o install_nvm.sh

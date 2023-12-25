@@ -1,5 +1,5 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible
+filetype off
 
 set hlsearch
 set autoindent
@@ -50,5 +50,6 @@ set visualbell
 
 set rtp+=~/.vim/pack/plugins/opt/YouCompleteMe
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+map <F12> :YcmCompleter FixIt<CR>
 
 set encoding=utf-8

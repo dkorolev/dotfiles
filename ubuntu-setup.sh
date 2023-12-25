@@ -47,7 +47,7 @@ else
   echo
   (cd ~/.vim/pack/plugins/opt/YouCompleteMe; ./install.py --all)
 
-  T_YCM_CLONE_DONE=$(date +%s)
+  T_YCM_DONE=$(date +%s)
 
   echo
   echo "YCM build took $((T_YCM_DONE-T_YCM_CLONE_DONE))s."

@@ -16,6 +16,7 @@ set softtabstop=2
 set tabstop=2
 set completeopt=menu,longest,preview
 set wildignore=*.o,*~,*.pyc
+set ruler
 
 set backspace=indent,eol,start
 

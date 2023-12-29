@@ -1,6 +1,7 @@
 zsh git vim curl wget
 
 build-essential
+gdb
 cmake
 bc
 clang-format

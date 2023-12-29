@@ -2,6 +2,7 @@ zsh git vim curl wget
 
 build-essential
 cmake
+bc
 clang-format
 
 tree

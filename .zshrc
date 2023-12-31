@@ -1,4 +1,5 @@
 alias ls='ls --color=auto'
+alias jsb='js-beautify --indent-size=2 -n'
 
 setopt histignorealldups sharehistory
 

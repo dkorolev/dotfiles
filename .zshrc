@@ -1,6 +1,12 @@
 alias ls='ls --color=auto'
 alias jsb='js-beautify --indent-size=2 -n'
 
+if [ "$WSL_DISTRO_NAME" != '' ] ; then
+  alias xc='clip.exe'
+else
+  alias xc='xclip -selection clipboard'
+fi
+
 setopt histignorealldups sharehistory
 
 bindkey  "^[[H"   beginning-of-line

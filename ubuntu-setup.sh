@@ -18,6 +18,7 @@ else
   git clone https://github.com/dkorolev/dotfiles ~/.dotfiles
 
   ALL_APT_PACKAGES=""
+  # TODO(dkorolev): have `#` comment until the EOL, not only if it's the first char of the line!
   for i in $(cat .dotfiles/apt-packages.txt | grep -v '^#'); do ALL_APT_PACKAGES="$ALL_APT_PACKAGES $i"; done
 
   time sudo apt-get install -y $ALL_APT_PACKAGES

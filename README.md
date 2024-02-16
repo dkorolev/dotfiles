@@ -4,6 +4,8 @@ Since the repo is self-explanatory.
 
 ## Installing `ycm`
 
+*Todo: Make this neat.* Also testing new `gpg`.
+
 *Note: Obsoleted by `ubuntu-setup.sh`.*
 
 This is slow, but has no dependencies.

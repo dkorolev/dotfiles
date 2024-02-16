@@ -1,6 +1,8 @@
 alias ls='ls --color=auto'
 alias jsb='js-beautify --indent-size=2 -n'
 
+alias dr='podman run -it $(podman build -q .)'
+
 if [ "$WSL_DISTRO_NAME" != '' ] ; then
   alias xc='clip.exe'
 else

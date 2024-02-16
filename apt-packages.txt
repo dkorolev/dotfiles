@@ -6,6 +6,11 @@ cmake
 bc
 clang-format
 
+gnupg2
+gparted
+gedit
+ecryptfs-utils
+
 tree
 jq
 htop
@@ -29,6 +34,8 @@ moreutils
 
 xsel
 xclip
+
+cheese
 
 # nvm into `ubuntu-setup.sh`?
 # curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh -o install_nvm.sh
@@ -54,7 +61,9 @@ python3-colorama
 
 lcov
 
-android-sdk
-sdkmanager
+zbar-tools
 
+# NOTE(dkorolev): I had troubles with them on the ARM machine.
+# android-sdk
+# sdkmanager
 # scrcpy?

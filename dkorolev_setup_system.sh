@@ -48,7 +48,7 @@ if [ "$ARCH" != "aarch64" ] ; then
 fi
 
 # Install the dotfiles.
-cp $(find "${SCRIPT_DIR}/" -maxdepth 1 -name '.*' -type f) .
+cp $(find "${SCRIPT_DIR}/" -maxdepth 1 -name '.*' -type f) ~
 
 # Save the dotfiles for future users.
 sudo mkdir -p /var/dotfiles

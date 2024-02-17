@@ -51,7 +51,7 @@ cp $(find "${SCRIPT_DIR}/" -maxdepth 1 -name '.*' -type f) .
 # Save the dotfiles for future users.
 sudo mkdir -p /var/dotfiles
 sudo chmod a+rw /var/dotfiles
-cp $(find . -maxdepth 1 -name '.*' -type f) /var/dotfiles
+cp $(find "${SCRIPT_DIR}" -maxdepth 1 -name '.*' -type f) /var/dotfiles
 sudo chmod a-w /var/dotfiles
 
 # Set the shell to `zsh`.

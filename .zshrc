@@ -49,18 +49,20 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # TODO(dkorolev): I'd love to have more Git integration, but `oh-my-zsh` looks too heavy to my taste.
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git 
+zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git*' formats "(%F{green}%b%f) "
 
 precmd() {
     vcs_info
 }
 
-# TODO(dkorolev): Use `#` instead of `$` when root.
-
 setopt prompt_subst
 
-prompt='[%F{grey}%m%f] %F{#0080ff}%d/%f ${vcs_info_msg_0_}$ '
+if [[ $UID == 0 || $EUID == 0 ]] ; then
+  prompt='[%F{red}%m%f] %F{#0080ff}%d/%f ${vcs_info_msg_0_}%F{red}#%f '
+else
+  prompt='[%F{grey}%m%f] %F{#0080ff}%d/%f ${vcs_info_msg_0_}$ '
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

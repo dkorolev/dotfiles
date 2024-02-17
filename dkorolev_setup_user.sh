@@ -14,22 +14,26 @@ for i in $(find /var/dotfiles/ -maxdepth 1 -name '.*' -type f) ; do cp $i ~ ; ch
 
 # Install YCM.
 
-T_BEGIN=$(date +%s)
+if ! [ -s ~/.ycm_installed ] ; then
+  T_BEGIN=$(date +%s)
 
-git clone --depth 1 --recurse-submodules --shallow-submodules https://github.com/Valloric/YouCompleteMe ~/.vim/pack/plugins/opt/YouCompleteMe
+  git clone --depth 1 --recurse-submodules --shallow-submodules https://github.com/Valloric/YouCompleteMe ~/.vim/pack/plugins/opt/YouCompleteMe
 
-T_YCM_CLONE_DONE=$(date +%s)
+  T_YCM_CLONE_DONE=$(date +%s)
 
-echo
-echo "YCM clone took $((T_YCM_CLONE_DONE-T_BEGIN))s."
-echo
-(cd ~/.vim/pack/plugins/opt/YouCompleteMe; ./install.py --all)
+  echo
+  echo "YCM clone took $((T_YCM_CLONE_DONE-T_BEGIN))s."
+  echo
+  (cd ~/.vim/pack/plugins/opt/YouCompleteMe; ./install.py --all)
 
-T_YCM_DONE=$(date +%s)
+  T_YCM_DONE=$(date +%s)
 
-echo
-echo "YCM build took $((T_YCM_DONE-T_YCM_CLONE_DONE))s."
-echo
+  echo
+  echo "YCM build took $((T_YCM_DONE-T_YCM_CLONE_DONE))s."
+  echo
+
+  echo "yes" > ~/.ycm_installed
+fi
 
 # Background TBD.
 (cd ~/Pictures; wget http://dima.ai/static/background.jpg)

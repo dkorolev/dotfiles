@@ -51,10 +51,13 @@ cp $(find . -maxdepth 1 -name '.*' -type f) /var/dotfiles
 sudo chmod a-w /var/dotfiles
 
 # Set the shell to `zsh`.
+sudo cp /etc/pam.d/chsh /etc/pam.d/chsh.save
+sudo sed -i s/required/sufficient/g /etc/pam.d/chsh
 sudo chsh -s $(which zsh) $(whoami)
+sudo mv /etc/pam.d/chsh.save /etc/pam.d/chsh
 
 # Also, copy the dotfiles into `root`, for the `sudo` shell to be beautified too.
-for i in $(find /var/dotfiles/ -maxdepth 1 -name '.*' -type f) ; do sudo cp $i /root ; sudo chown root: /root/$i ; done
+for i in $(find /var/dotfiles/ -maxdepth 1 -name '.*' -type f) ; do sudo cp $i /root ; sudo chown root: /root/$(basename $i) ; done
 
 # No gnome initial setup for each and every new user.
 sudo mkdir -p /etc/skel/.config

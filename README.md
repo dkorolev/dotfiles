@@ -5,8 +5,8 @@
 Requires `sudo`.
 
 ```
-DIR=/tmp/.dotfiles.$(date +%s) && \
-mkdir $DIR && \
+DIR=/tmp/.dotfiles.$(date +%s) &&
+mkdir $DIR &&
 (cd $DIR; wget df.dima.ai -O df.zip) &&
 (cd $DIR; unzip df.zip) &&
 ./$DIR/dotfiles-main/dkorolev_setup_system.sh &&
@@ -18,8 +18,8 @@ mkdir $DIR && \
 Does not require `sudo`.
 
 ```
-DIR=/tmp/.dotfiles.$(date +%s) && \
-mkdir $DIR && \
+DIR=/tmp/.dotfiles.$(date +%s) &&
+mkdir $DIR &&
 (cd $DIR; wget df.dima.ai -O df.zip) &&
 (cd $DIR; unzip df.zip) &&
 ./$DIR/dotfiles-main/dkorolev_setup_user.sh &&

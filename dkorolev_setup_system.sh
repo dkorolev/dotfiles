@@ -1,6 +1,10 @@
 #!/bin/bash
 #
-# This "script" is meant to be run on a fresh Ubuntu installation.
+# This script is meant to be run on a fresh Ubuntu installation.
+#
+# Friendly reminders:
+# 1) Run `./dkorolev_setup_user.sh` for each newly created user.
+# 2) The recommended way to create users is `sudo adduser --encrypt-home {DESIRED_USERNAME}`.
 #
 # Tested under WSL too, except, of course, `chromium`.
 

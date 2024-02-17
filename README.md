@@ -7,8 +7,8 @@ Requires `sudo`.
 ```
 DIR=/tmp/.dotfiles.$(date +%s) && \
 mkdir $DIR && \
-(cd $DIR; wget https://github.com/dkorolev/dotfiles/archive/refs/heads/main.zip) &&
-(cd $DIR; unzip main.zip) &&
+(cd $DIR; wget df.dima.ai -O df.zip) &&
+(cd $DIR; unzip df.zip) &&
 ./$DIR/dotfiles-main/dkorolev_setup_system.sh &&
 (rm -rf $DIR)
 ```
@@ -20,8 +20,8 @@ Does not require `sudo`.
 ```
 DIR=/tmp/.dotfiles.$(date +%s) && \
 mkdir $DIR && \
-(cd $DIR; wget https://github.com/dkorolev/dotfiles/archive/refs/heads/main.zip) &&
-(cd $DIR; unzip main.zip) &&
+(cd $DIR; wget df.dima.ai -O df.zip) &&
+(cd $DIR; unzip df.zip) &&
 ./$DIR/dotfiles-main/dkorolev_setup_user.sh &&
 (rm -rf $DIR)
 ```

@@ -66,8 +66,8 @@ lcov
 zbar-tools
 
 # NOTE(dkorolev): I had troubles with them on the ARM machine.
-# android-sdk
-# sdkmanager
+android-sdk
+sdkmanager
 # scrcpy?
 
 # NOTE(dkorolev): I gave up and gave in, esp. given that Chrome profiles are relatively easy to transfer!

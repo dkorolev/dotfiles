@@ -5,7 +5,7 @@
 Requires `sudo`.
 
 ```
-DIR=.dotfiles.$(date +%s) && \
+DIR=/tmp/.dotfiles.$(date +%s) && \
 mkdir $DIR && \
 (cd $DIR; wget https://github.com/dkorolev/dotfiles/archive/refs/heads/main.zip) &&
 (cd $DIR; unzip main.zip) &&
@@ -18,7 +18,7 @@ mkdir $DIR && \
 Does not require `sudo`.
 
 ```
-DIR=.dotfiles.$(date +%s) && \
+DIR=/tmp/.dotfiles.$(date +%s) && \
 mkdir $DIR && \
 (cd $DIR; wget https://github.com/dkorolev/dotfiles/archive/refs/heads/main.zip) &&
 (cd $DIR; unzip main.zip) &&

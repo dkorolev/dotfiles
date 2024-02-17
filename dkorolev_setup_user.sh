@@ -30,3 +30,7 @@ T_YCM_DONE=$(date +%s)
 echo
 echo "YCM build took $((T_YCM_DONE-T_YCM_CLONE_DONE))s."
 echo
+
+# Background TBD.
+(cd ~/Pictures; wget http://dima.ai/static/background.jpg)
+gsettings set org.gnome.desktop.background picture-uri "file:///home/$(whoami)/Pictures/background.jpg"

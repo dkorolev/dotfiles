@@ -21,7 +21,7 @@ git clone --depth 1 --recurse-submodules --shallow-submodules https://github.com
 T_YCM_CLONE_DONE=$(date +%s)
 
 echo
-echo "YCM clone took $((T_YCM_CLONE_DONE-T_APT_DONE))s."
+echo "YCM clone took $((T_YCM_CLONE_DONE-T_BEGIN))s."
 echo
 (cd ~/.vim/pack/plugins/opt/YouCompleteMe; ./install.py --all)
 

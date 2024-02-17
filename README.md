@@ -26,6 +26,18 @@ mkdir $DIR &&
 (rm -rf $DIR)
 ```
 
+## SSH
+
+```
+if [ -s ~/.ssh/id_ed25519.pub ] ; then echo "Already OK." ; else ssh-keygen -t ed25519 -C "$(whoami)-$(hostname)" ; fi
+```
+
+## GPG
+
+```
+gpg --list-secret-keys --keyid-format=long
+```
+
 ## More
 
 Please refer to the [NOTES](https://github.com/dkorolev/dotfiles/blob/main/NOTES.md) for deeper details.

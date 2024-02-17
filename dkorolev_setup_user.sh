@@ -10,7 +10,7 @@
 chsh -s $(which zsh) $(whoami)
 
 # Install the dotfiles.
-for i in $(find /var/dotfiles/ -maxdepth 1 -name '.*' -type f) ; do sudo cp $i ~ ; sudo chown $(whoami): ~/$(basename $i) ; done
+for i in $(find /var/dotfiles/ -maxdepth 1 -name '.*' -type f) ; do cp $i ~ ; chown $(whoami): ~/$(basename $i) ; done
 
 # Install YCM.
 

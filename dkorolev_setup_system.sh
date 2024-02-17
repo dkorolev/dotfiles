@@ -38,12 +38,14 @@ echo
 echo "APT packages installation took $((T_APT_DONE-T_BEGIN))s."
 echo
 
-# TODO(dkorolev): This did not work on an ARM.
-sudo mkdir -p /usr/lib/android-sdk/licenses
-sudo chmod a+rw  /usr/lib/android-sdk/licenses
-sudo mkdir -p /opt/android-sdk
-sudo chmod a+rw  /opt/android-sdk
-yes | sdkmanager --licenses
+ARCH=$(arch)
+if [ "$ARCH" != "aarch64" ] ; then
+  sudo mkdir -p /usr/lib/android-sdk/licenses
+  sudo chmod a+rw  /usr/lib/android-sdk/licenses
+  sudo mkdir -p /opt/android-sdk
+  sudo chmod a+rw  /opt/android-sdk
+  yes | sdkmanager --licenses
+fi
 
 # Install the dotfiles.
 cp $(find "${SCRIPT_DIR}/" -maxdepth 1 -name '.*' -type f) .

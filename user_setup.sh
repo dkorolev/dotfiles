@@ -11,6 +11,8 @@
 
 set -e
 
+SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
+
 if ! [ -d /var/dotfiles ] ; then
   echo 'Expecting to have the `/var/dotfiles` dir created during the system setup phase.'
   exit 1
@@ -63,7 +65,7 @@ if [ -f "/var/userdata/$U.tar.gz.des3" ] ; then
   (cd $DIR; openssl des3 -d -pbkdf2 <"/var/userdata/$U.tar.gz.des3" | tar xz)
 
   # Chrome
-  CHROME_BASE=$(./chrome_default_profile_base_dir.sh $U)
+  CHROME_BASE=$("$SCRIPT_DIR/chrome_default_profile_base_dir.sh" $U)
   if [ "$CHROME_BASE" != "" ] ; then
     if [ -d "$CHROME_BASE/Default" ] ; then
       mv "$CHROME_BASE/Default" "$CHROME_BASE/Default.$(date +%s)"

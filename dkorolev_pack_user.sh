@@ -59,15 +59,28 @@ else
   echo 'The wallpaper file does not exist.'
 fi
 
+TS=$(date +%s)
+
 if sudo [ -f "/var/dkorolev_profiles/$U.tar.gz" ] ; then
   echo 'Found the old saved profile! Moving it under an older name.'
-  sudo mv "/var/dkorolev_profiles/$U.tar.gz" "/var/dkorolev_profiles/$U.tar.gz.$(date +%s)"
+  sudo mv "/var/dkorolev_profiles/$U.tar.gz.des3" "/var/dkorolev_profiles/$U.tar.gz.des3.$TS"
 fi
 
 sudo mkdir -p "/var/dkorolev_profiles/scripts/$U"
 sudo chown $U: "/var/dkorolev_profiles/scripts/$U"
 sudo chmod a+w "/var/dkorolev_profiles/scripts/$U/"
-echo "(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; tar czf /var/dkorolev_profiles/$U.tar.gz Default dkorolev_extras)" > "/var/dkorolev_profiles/scripts/$U/doit.sh"
+
+echo <<EOF >"/var/dkorolev_profiles/scripts/$U/doit.sh"
+#!/bin/bash
+set -e
+(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; tar $U.tar.gz.$TS Default dkorolev_extras)
+(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; rm -f $U.tar.gz)
+(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; mv $U.tar.gz.$TS $U.tar.gz)
+(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; openssl des3 -pbkdf2 <$U.tar.gz >$U.tar.gz.des3)
+(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; rm -f $U.tar.gz)
+(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; mv $U.tar.gz.des3 /var/dkorolev_profiles/)
+EOF
+
 sudo chmod a-w "/var/dkorolev_profiles/scripts/$U/"
 sudo chmod +x "/var/dkorolev_profiles/scripts/$U/doit.sh"
 echo -n "/var/dkorolev_profiles/scripts/$U/doit.sh ..."

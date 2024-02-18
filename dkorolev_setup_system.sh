@@ -20,6 +20,8 @@ elif ! ( [ "$EUID" -eq 0 ] || SUDO_ASKPASS=/bin/false sudo -A /bin/true >/dev/nu
   exit 1
 fi
 
+ARCH=$(arch)
+
 T_BEGIN=$(date +%s)
 
 sudo apt-get -y update
@@ -27,7 +29,12 @@ sudo apt-get install -y git
 
 ALL_APT_PACKAGES=""
 # TODO(dkorolev): have `#` comment until the EOL, not only if it's the first char of the line!
-for i in $(cat "${SCRIPT_DIR}/apt-packages.txt" | grep -v '^#'); do ALL_APT_PACKAGES="$ALL_APT_PACKAGES $i"; done
+for i in $(cat "${SCRIPT_DIR}/apt-packages.txt" | grep -v '^#'); do
+  # TODO(dkorolev): Make this more generic, i.e. some `sdkmanager  # arch-disable:aarch64` in `apt-packages.txt`.'
+  if [ "$ARCH" != "aarch64" ] || [ "$i" != "sdkmanager" ] ; then
+    ALL_APT_PACKAGES="$ALL_APT_PACKAGES $i"
+  fi
+done
 
 time sudo apt-get install -y $ALL_APT_PACKAGES
 
@@ -37,7 +44,6 @@ echo
 echo "APT packages installation took $((T_APT_DONE-T_BEGIN))s."
 echo
 
-ARCH=$(arch)
 if [ "$ARCH" != "aarch64" ] ; then
   sudo mkdir -p /usr/lib/android-sdk/licenses
   sudo chmod a+rw  /usr/lib/android-sdk/licenses

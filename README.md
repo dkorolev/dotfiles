@@ -2,7 +2,7 @@
 
 ## Base Flow
 
-## On a new system
+### On a new system
 
 Run:
 
@@ -16,7 +16,7 @@ Add those `wheel` users yourself, with `sudo usermod -a -G wheel USERNAME` for a
 
 I've made the user `toor` to have a dedicated prompt with `zsh`, but the choice is ultimately yours.
 
-## To add a user
+### To add a user
 
 First:
 
@@ -25,11 +25,20 @@ sudo adduser --encrypt-home {name}
 sudo ./dkorolev_govern_user.sh {name}
 ```
 
-Then log in as this user in Gnome and:
+Log in as this user in Gnome. In there:
+
+* Launch Chromium. This creates its config dir.
+* Close Chromium and start it again. This offers to set it as the default browser.
+* Pin it to the dash is wanted.
+* Close it.
+
+Then run:
 
 ```
 ./dkorolev_setup_user.sh
 ```
+
+Done!
 
 ## One-Liner for system setup
 

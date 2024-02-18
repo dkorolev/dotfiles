@@ -69,8 +69,10 @@ if sudo [ -f "$PROFILE_DST" ] ; then
 fi
 
 sudo mkdir -p "/var/dkorolev_profiles/scripts/$U"
+sudo chown $U: "/var/dkorolev_profiles/scripts/$U"
 sudo rm -f "/var/dkorolev_profiles/scripts/$U/doit.sh"
 sudo touch "/var/dkorolev_profiles/scripts/$U/doit.sh"
+sudo chown $U: "/var/dkorolev_profiles/scripts/$U"
 chmod 777 "/var/dkorolev_profiles/scripts/$U/doit.sh"
 
 cat <<EOF >"/var/dkorolev_profiles/scripts/$U/doit.sh"
@@ -88,7 +90,6 @@ set -e
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; mv $U.tar.gz.des3 /var/dkorolev_profiles/)
 EOF
 
-sudo chown -R $U: "/var/dkorolev_profiles/scripts/$U"
 sudo chmod 700 "/var/dkorolev_profiles/scripts/$U/"
 echo 'Running `/var/dkorolev_profiles/scripts/$U/doit.sh`, it will prompt for encryption password.'
 sudo "/var/dkorolev_profiles/scripts/$U/doit.sh"

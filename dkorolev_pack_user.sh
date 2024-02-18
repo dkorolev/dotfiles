@@ -59,7 +59,10 @@ else
   echo 'The wallpaper file does not exist.'
 fi
 
-echo "'(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; time tar czf /var/dkorolev_profiles/$U.tar.gz Default dkorolev_extras)'" | xargs sudo bash -
+echo -n 'Packing ... '
+echo "\'(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; time tar czf /var/dkorolev_profiles/$U.tar.gz Default dkorolev_extras)\'" | xargs sudo bash -
+echo 'Packing done.'
+
 sudo chown $U: /var/dkorolev_profiles/$U.tar.gz
 
 sudo rm -rf "$EXTRAS_DIR"

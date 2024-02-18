@@ -2,11 +2,10 @@
 #
 # This script is meant to be run on a fresh Ubuntu installation.
 #
-# Friendly reminders:
-# 1) Run `./dkorolev_setup_user.sh` for each newly created user.
-# 2) The recommended way to create users is `sudo adduser --encrypt-home {DESIRED_USERNAME}`.
-#
-# Tested under WSL too, except, of course, `chromium`.
+# Friendly reminder. To add users later on:
+# 1) [ with root ] sudo adduser --encrypt-home $U
+# 2) [ with root ] sudo ./govern_user.sh $U
+# 3) [  as user ]  ./user_setup.sh
 
 set -e
 

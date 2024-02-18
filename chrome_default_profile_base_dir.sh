@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [ $# != 1 ] ; then
   echo 'Need one arg, the user name.'
   exit 1

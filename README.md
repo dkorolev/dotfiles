@@ -7,7 +7,7 @@
 Run:
 
 ```
-sudo ./dkorolev_setup_system.sh
+sudo ./ubuntu_setup.sh
 ```
 
 Among other things this makes sure the users from the `wheel` group have passwordless sudo.
@@ -22,57 +22,48 @@ First:
 
 ```
 sudo adduser --encrypt-home {name}
-sudo ./dkorolev_govern_user.sh {name}
+sudo ./govern_user.sh {name}
 ```
 
 Log in as this user in Gnome. In there:
 
-* Launch Chromium. This creates its config dir.
-* Close Chromium and start it again. This offers to set it as the default browser.
-* Pin it to the dash is wanted.
-* Close it.
+* Launch Chromium.
+  * This creates its config dir.
+* Close Chromium and start it again.
+  * This offers to set it as the default browser.
+  * Pin it to the dash is wanted.
+* Close Chromium.
 
 Then run:
 
 ```
-./dkorolev_setup_user.sh
+./user_setup.sh
 ```
+
+This should configure the Chromium profile, plus set the wallpaper and the profile pic, plus unpack user-specific files.
 
 Done!
 
-## One-Liner for system setup
-
-Requires `sudo`.
+### Quick way to grab this repo.
 
 ```
-DIR=/tmp/.dotfiles.$(date +%s) &&
-mkdir $DIR &&
-(cd $DIR; wget df.dima.ai -O df.zip) &&
-(cd $DIR; unzip df.zip) &&
-$DIR/dotfiles-main/dkorolev_setup_system.sh &&
-(rm -rf $DIR)
+wget df.dima.ai -O df.zip && unzip df.zip && mv dotfiles-main dotfiles
 ```
 
-## One-Liner for user setup
+## Useful Commands
 
-Does not require `sudo`.
-
-```
-/var/dkorolev_dotfiles/dkorolev_setup_user.sh
-```
-
-## SSH
+### SSH
 
 ```
 if [ -s ~/.ssh/id_ed25519.pub ] ; then echo "Already OK." ; else ssh-keygen -t ed25519 -C "$(whoami)-$(hostname)" ; fi
 ```
 
-## GPG
+### GPG
 
 ```
 gpg --list-secret-keys --keyid-format=long
 ```
 
-## More
+### More
 
 Please refer to the [NOTES](https://github.com/dkorolev/dotfiles/blob/main/NOTES.md) for deeper details.

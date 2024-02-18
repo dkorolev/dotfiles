@@ -1,6 +1,7 @@
 #!/bin/bash
 #
-# Must be run as root while the user is logged in so that their directory is not encrypted.
+# Must be run as root while the user is logged in, so that their directory is not encrypted.
+# It is also highly recommended that Chrome is not running under that user while it is being packed.
 
 set -e
 

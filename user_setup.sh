@@ -4,7 +4,10 @@
 #
 # Friendly reminders:
 # 1) Run `./dkorolev_setup_system.sh` first, to set up the system before setting up users.
-# 2) The recommended way to create users is `sudo adduser --encrypt-home {DESIRED_USERNAME}`.
+# 2) The recommended way to create users is `sudo adduser --encrypt-home $U`.
+# 3) Don't forget to run `sudo ./govern_user.sh $U` right after adding the user.
+#
+# Please refer to the README for more details.
 
 set -e
 

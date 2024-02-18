@@ -1,10 +1,12 @@
 #!/bin/bash
 #
-# This script is meant to be run right after `sudo adduser ...`.
+# This script is meant to be run right after `sudo adduser --encrypt-home ...`.
 #
-# Friendly reminders:
-# 1) Run `./dkorolev_setup_user.sh` for each newly created user.
-# 2) The recommended way to create users is `sudo adduser --encrypt-home {DESIRED_USERNAME}`.
+# Friendly reminder: run `./user_setup.sh` from under this user after running this script.
+#
+# Please refer to the README for more details.
+
+set -e
 
 U=$1
 

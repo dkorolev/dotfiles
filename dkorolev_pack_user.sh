@@ -54,8 +54,8 @@ WALL="$(sudo runuser -u $U -- gsettings get org.gnome.desktop.background picture
 echo "Has wallpaper: $WALL"
 if sudo [ -f "$WALL" ] ; then
   echo 'The wallpaper file does exist.'
-  sudo cp "$WALL" "$EXTRAS_DIR/wall.png"
-  sudo chown $U: "$EXTRAS_DIR/wall.png"
+  sudo cp "$WALL" "$EXTRAS_DIR/wall.jpg"
+  sudo chown $U: "$EXTRAS_DIR/wall.jpg"
 else
   echo 'The wallpaper file does not exist.'
 fi

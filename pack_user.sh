@@ -14,6 +14,8 @@ if [ "$U" == "" ] ; then
   exit 1
 fi
 
+shift
+
 if [[ $UID == 0 || $EUID == 0 ]] ; then
   echo 'Please do not run as `root`.'
   exit 1
@@ -40,6 +42,16 @@ EXTRAS_DIR="$CHROME_DEFAULT_PROFILE_BASE_DIR/Downloads"
 sudo rm -rf "$EXTRAS_DIR"
 sudo mkdir -p "$EXTRAS_DIR"
 sudo chown $U: "$EXTRAS_DIR"
+
+while [ "$1" != "" ] ; do
+  if [ -d "/home/$U/$1" ] ; then
+    echo "Taking dir '/home/$U/$1'."
+    sudo cp -rv "/home/$U/$1" "$EXTRA_DIR"
+  else
+    echo "Error, '$1' is not a dir under '/home/$U'."
+    exit 1
+  fi
+done
 
 ICON="$(sudo cat "/var/lib/AccountsService/users/$U" | grep '^Icon=' | sed "s/^Icon=//")"
 echo "Has icon: $ICON"

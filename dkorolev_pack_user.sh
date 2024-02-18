@@ -59,8 +59,14 @@ else
   echo 'The wallpaper file does not exist.'
 fi
 
+sudo mkdir -p "/var/dkorolev_profiles/scripts/$U"
+sudo chown $U: "/var/dkorolev_profiles/scripts/$U"
+sudo chmod a+w "/var/dkorolev_profiles/scripts/$U/"
+echo "\'(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; time tar czf /var/dkorolev_profiles/$U.tar.gz Default dkorolev_extras)\'" > "/var/dkorolev_profiles/scripts/$U/doit.sh"
+sudo chmod a-w "/var/dkorolev_profiles/scripts/$U/"
+sudo chmod +x "/var/dkorolev_profiles/scripts/$U/doit.sh"
 echo -n 'Packing ... '
-echo "\'(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; time tar czf /var/dkorolev_profiles/$U.tar.gz Default dkorolev_extras)\'" | xargs sudo bash -
+sudo "/var/dkorolev_profiles/scripts/$U/doit.sh"
 echo 'Packing done.'
 
 sudo chown $U: /var/dkorolev_profiles/$U.tar.gz

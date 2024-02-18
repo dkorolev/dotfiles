@@ -8,6 +8,11 @@
 
 set -e
 
+if ! [ -d /var/dotfiles ] ; then
+  echo 'Expecting to have the `/var/dotfiles` dir created during the system setup phase.'
+  exit 1
+fi
+
 U=$(whoami)
 
 # Set the shell to zsh.
@@ -19,7 +24,7 @@ else
 fi
 
 # Install the dotfiles.
-for i in $(find /var/dkorolev_dotfiles/ -maxdepth 1 -name '.*' -type f) ; do cp $i ~ ; chown $U: ~/$(basename $i) ; done
+for i in $(find /var/dotfiles/ -maxdepth 1 -name '.*' -type f) ; do cp $i ~ ; chown $U: ~/$(basename $i) ; done
 
 # Install YCM.
 if ! [ -s ~/.ycm_installed ] ; then

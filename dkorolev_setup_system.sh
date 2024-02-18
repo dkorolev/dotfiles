@@ -56,9 +56,9 @@ fi
 cp $(find "${SCRIPT_DIR}/" -maxdepth 1 -name '.*' -type f) ~
 
 # Save this repo for future users.
-sudo rm -rf /var/dkorolev_dotfiles
-sudo cp -R "${SCRIPT_DIR}" /var/dkorolev_dotfiles
-sudo chmod -R a-w /var/dkorolev_dotfiles
+sudo rm -rf /var/dotfiles
+sudo cp -R "${SCRIPT_DIR}" /var/dotfiles
+sudo chmod -R a-w /var/dotfiles
 
 # Set the shell to `zsh`.
 sudo cp /etc/pam.d/chsh /etc/pam.d/chsh.save
@@ -67,7 +67,7 @@ sudo chsh -s $(which zsh) $(whoami)
 sudo mv /etc/pam.d/chsh.save /etc/pam.d/chsh
 
 # Also, copy the dotfiles into `root`, for the `sudo` shell to be beautified too.
-for i in $(find /var/dkorolev_dotfiles/ -maxdepth 1 -name '.*' -type f) ; do sudo cp $i /root ; sudo chown root: /root/$(basename $i) ; done
+for i in $(find /var/dotfiles/ -maxdepth 1 -name '.*' -type f) ; do sudo cp $i /root ; sudo chown root: /root/$(basename $i) ; done
 
 # No gnome initial setup for each and every new user.
 sudo mkdir -p /etc/skel/.config

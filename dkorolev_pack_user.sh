@@ -70,7 +70,7 @@ fi
 
 sudo mkdir -p "/var/dkorolev_profiles/scripts/$U"
 sudo chown $U: "/var/dkorolev_profiles/scripts/$U"
-sudo chmod 600 "/var/dkorolev_profiles/scripts/$U/"
+sudo chmod a+w "/var/dkorolev_profiles/scripts/$U/"
 
 cat <<EOF >"/var/dkorolev_profiles/scripts/$U/doit.sh"
 #!/bin/bash

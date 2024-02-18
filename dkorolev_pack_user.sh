@@ -62,9 +62,10 @@ fi
 
 TS=$(date +%s)
 
-if sudo [ -f "/var/dkorolev_profiles/$U.tar.gz" ] ; then
+PROFILE_DST="/var/dkorolev_profiles/$U.tar.gz.des3"
+if sudo [ -f "$PROFILE_DST" ] ; then
   echo 'Found the old saved profile! Moving it under an older name.'
-  sudo mv "/var/dkorolev_profiles/$U.tar.gz.des3" "/var/dkorolev_profiles/$U.tar.gz.des3.$TS"
+  sudo mv "$PROFILE_DST" "$PROFILE_DST.$TS"
 fi
 
 sudo mkdir -p "/var/dkorolev_profiles/scripts/$U"

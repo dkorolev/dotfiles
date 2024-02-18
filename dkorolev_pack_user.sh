@@ -26,7 +26,7 @@ if sudo [ -f /home/dima/Access-Your-Private-Data.desktop ] ; then
   exit 1
 fi
 
-sudo "${SCRIPT_DIR}/chrome_default_profile_base_dir.sh"
+sudo "${SCRIPT_DIR}/chrome_default_profile_base_dir.sh" "$U"
 
 sudo cat "/var/lib/AccountsService/users/$U" | grep '^Icon=' | sed "s/^Icon=//"
 

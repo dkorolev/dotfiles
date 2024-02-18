@@ -96,7 +96,7 @@ set -e
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; tar czf $U.tar.gz.$TS Default Downloads)
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; chown $U: $U.tar.gz.$TS)
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; chmod 600 $U.tar.gz.$TS)
-(cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; [ -f shred $U.tar.gz] && shred $U.tar.gz)
+(cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; [ -f shred $U.tar.gz ] && shred $U.tar.gz)
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; rm -f $U.tar.gz)
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; mv $U.tar.gz.$TS $U.tar.gz)
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; openssl des3 -pbkdf2 <$U.tar.gz >$U.tar.gz.des3)

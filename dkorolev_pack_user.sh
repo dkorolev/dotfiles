@@ -89,5 +89,6 @@ sudo chmod a-w "/var/dkorolev_profiles/scripts/$U/"
 sudo chmod +x "/var/dkorolev_profiles/scripts/$U/doit.sh"
 echo 'Running `/var/dkorolev_profiles/scripts/$U/doit.sh`, it will prompt for encryption password.'
 sudo "/var/dkorolev_profiles/scripts/$U/doit.sh"
+echo 'Done!'
 
 sudo rm -rf "$EXTRAS_DIR"

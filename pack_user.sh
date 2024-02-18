@@ -46,7 +46,7 @@ sudo chown $U: "$EXTRAS_DIR"
 while [ "$1" != "" ] ; do
   if sudo [ -d "/home/$U/$1" ] ; then
     echo "Taking dir '/home/$U/$1'."
-    sudo cp -rv "/home/$U/$1" "$EXTRA_DIR"
+    sudo cp -rv "/home/$U/$1" "$EXTRAS_DIR"
   else
     echo "Error, '$1' is not a dir under '/home/$U'."
     exit 1

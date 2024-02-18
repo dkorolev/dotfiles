@@ -40,3 +40,4 @@ echo 'iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAbjUlEQVR4nO2de5QmRZXgf5H5Pe
   | base64 --decode >/tmp/.icon.$U
 sudo mv /tmp/.icon.$U /var/lib/AccountsService/icons/$U
 sudo chown $U: /var/lib/AccountsService/icons/$U
+sudo chmod a+r /var/lib/AccountsService/icons/$U

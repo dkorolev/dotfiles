@@ -112,5 +112,5 @@ echo 'Running `/var/userdata/scripts/$U/doit.sh`, it will prompt for encryption 
 sudo "/var/userdata/scripts/$U/doit.sh"
 echo 'Done!'
 
-find -type f "$EXTRAS_DIR"/ | xargs shred
+find "$EXTRAS_DIR"/ -type f | xargs shred
 #sudo rm -rf "$EXTRAS_DIR"

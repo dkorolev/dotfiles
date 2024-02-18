@@ -41,7 +41,7 @@ sudo chown $U: "$EXTRAS_DIR"
 
 ICON="$(sudo cat "/var/lib/AccountsService/users/$U" | grep '^Icon=' | sed "s/^Icon=//")"
 echo "Has icon: $ICON"
-if [ -f "$ICON" ] ; then
+if sudo [ -f "$ICON" ] ; then
   echo 'The icon file exists.'
   sudo cp "$ICON" "$EXTRAS_DIR/icon.png"
   sudo chown $U: "$EXTRAS_DIR/icon.png"
@@ -51,7 +51,7 @@ fi
 
 WALL="$(sudo runuser -u $U -- gsettings get org.gnome.desktop.background picture-uri  | xargs echo | sed 's/^file:\/\///')"
 echo "Has wallpaper: $WALL"
-if [ -f "$WALL" ] ; then
+if sudo [ -f "$WALL" ] ; then
   echo 'The wallpaper file does exist.'
   sudo cp "$WALL" "$EXTRAS_DIR/wall.png"
   sudo chown $U: "$EXTRAS_DIR/wall.png"

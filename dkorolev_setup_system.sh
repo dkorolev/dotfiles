@@ -8,6 +8,8 @@
 #
 # Tested under WSL too, except, of course, `chromium`.
 
+set -e
+
 SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 
 if [[ $UID == 0 || $EUID == 0 ]] ; then
@@ -66,7 +68,7 @@ sudo mkdir -p /etc/skel/.config
 echo yes | sudo tee /etc/skel/.config/gnome-initial-setup-done >/dev/null
 
 # Prepare the `wheel` group.
-sudo addgroup wheel
+sudo addgroup wheel || echo 'wheel already exists'
 sudo cat /etc/sudoers | grep 'editor=' >/dev/null && echo 'visuso uses vim' || echo 'Defaults editor=/usr/bin/vim' | sudo tee /etc/sudoers >/dev/null
 sudo cat /etc/sudoers | grep NOPASSWD >/dev/null && echo 'has NOPASSWD' || echo '%wheel ALL=(ALL) NOPASSWD:ALL' | sudo tee /etc/sudoers >/dev/null
 

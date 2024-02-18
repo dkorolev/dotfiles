@@ -26,8 +26,26 @@ if sudo [ -f /home/dima/Access-Your-Private-Data.desktop ] ; then
   exit 1
 fi
 
-sudo "${SCRIPT_DIR}/chrome_default_profile_base_dir.sh" "$U"
+CHROME_DEFAULT_PROFILE_BASE_DIR="$(sudo "${SCRIPT_DIR}/chrome_default_profile_base_dir.sh" "$U")"
 
-sudo cat "/var/lib/AccountsService/users/$U" | grep '^Icon=' | sed "s/^Icon=//"
+sudo mkdir -p "/var/dkorolev_profiles"
 
-sudo runuser -u "$U" -- gsettings get org.gnome.desktop.background picture-uri  | xargs echo | sed 's/^file:\/\///'
+EXTRAS_DIR="$CHROME_DEFAULT_PROFILE_BASE_DIR/dkorolev_extras"
+sudo mkdir -p "$EXTRAS_DIR"
+
+ICON="$(sudo cat "/var/lib/AccountsService/users/$U" | grep '^Icon=' | sed "s/^Icon=//")"
+if [ -f "$ICON" ] ; then
+  sudo cp "$ICON" "$EXTRAS_DIR/icon.png"
+  sudo chown $U: "$EXTRAS_DIR/icon.png"
+fi
+
+WALL="$(sudo runuser -u "$U" -- gsettings get org.gnome.desktop.background picture-uri  | xargs echo | sed 's/^file:\/\///'")"
+if [ -f "$WALL" ] ; then
+  sudo cp "$WAL" "$EXTRAS_DIR/wall.png"
+  sudo chown $U: "$EXTRAS_DIR/wall.png"
+fi
+
+echo "'(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; tar czvf /var/dkorolev_profiles/$U.tar.gz Default dkorolev_extras)'" | xargs sudo bash -
+sudo chown $U: /var/dkorolev_profiles/$U.tar.gz
+
+sudo rm -rf "$EXTRAS_DIR"

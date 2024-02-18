@@ -39,7 +39,7 @@ if [ -f "$ICON" ] ; then
   sudo chown $U: "$EXTRAS_DIR/icon.png"
 fi
 
-WALL="$(sudo runuser -u "$U" -- gsettings get org.gnome.desktop.background picture-uri  | xargs echo | sed 's/^file:\/\///'")"
+WALL="$(sudo runuser -u $U -- gsettings get org.gnome.desktop.background picture-uri  | xargs echo | sed 's/^file:\/\///')"
 if [ -f "$WALL" ] ; then
   sudo cp "$WAL" "$EXTRAS_DIR/wall.png"
   sudo chown $U: "$EXTRAS_DIR/wall.png"

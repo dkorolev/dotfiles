@@ -2,20 +2,30 @@
 
 ## Base Flow
 
-On a new system:
+## On a new system
+
+Run:
 
 ```
 sudo ./dkorolev_setup_system.sh
 ```
 
-To add a user:
+Among other things this makes sure the users from the `wheel` group have passwordless sudo.
+
+Add those `wheel` users yourself, with `sudo usermod -a -G wheel USERNAME` for an existing `USERNAME`.
+
+I've made the user `toor` to have a dedicated prompt with `zsh`, but the choice is ultimately yours.
+
+## To add a user
+
+First:
 
 ```
 sudo adduser --encrypt-home {name}
 sudo ./dkorolev_govern_user.sh {name}
 ```
 
-Then log in as this user in Gnome and run:
+Then log in as this user in Gnome and:
 
 ```
 ./dkorolev_setup_user.sh

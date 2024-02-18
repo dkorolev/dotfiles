@@ -58,8 +58,10 @@ precmd() {
 
 setopt prompt_subst
 
-if [[ $UID == 0 || $EUID == 0 ]] ; then
-  prompt='[%F{red}%m%f] %F{#0080ff}%d/%f ${vcs_info_msg_0_}%F{red}#%f '
+if [[ $USER == "toor" ]] ; then
+  prompt='[%F{red}%m%f] wheel %F{green}%%%f '
+elif [[ $UID == 0 || $EUID == 0 ]] ; then
+  prompt='[%F{red}%m%f] %d/ ${vcs_info_msg_0_}%F{red}#%f '
 else
   prompt='[%F{grey}%m%f] %F{#0080ff}%d/%f ${vcs_info_msg_0_}$ '
 fi

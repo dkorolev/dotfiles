@@ -69,6 +69,13 @@ for i in $(find /var/dotfiles/ -maxdepth 1 -name '.*' -type f) ; do sudo cp $i /
 sudo mkdir -p /etc/skel/.config
 echo yes | sudo tee /etc/skel/.config/gnome-initial-setup-done >/dev/null
 
+# Prepare the `wheel` group.
+sudo addgroup wheel
+sudo cat /etc/sudoers | grep 'editor=' >/dev/null && echo 'visuso uses vim' || echo 'Defaults editor=/usr/bin/vim' | sudo tee /etc/sudoers >/dev/null
+sudo cat /etc/sudoers | grep NOPASSWD >/dev/null && echo 'has NOPASSWD' || echo '%wheel ALL=(ALL) NOPASSWD:ALL' | sudo tee /etc/sudoers >/dev/null
+
+# NOTE(dkorolev): Not adding sudo-friendly users here, as this is super private, and should not be part of the repo.
+
 T_DONE=$(date +%s)
 
 echo

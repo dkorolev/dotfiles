@@ -59,15 +59,20 @@ else
   echo 'The wallpaper file does not exist.'
 fi
 
+if sudo [ -f "/var/dkorolev_profiles/$U.tar.gz" ] ; then
+  echo 'Found the old saved profile! Moving it under an older name.'
+  sudo mv "/var/dkorolev_profiles/$U.tar.gz" "/var/dkorolev_profiles/$U.tar.gz.$(date +%s)"
+fi
+
 sudo mkdir -p "/var/dkorolev_profiles/scripts/$U"
 sudo chown $U: "/var/dkorolev_profiles/scripts/$U"
 sudo chmod a+w "/var/dkorolev_profiles/scripts/$U/"
 echo "(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; time tar czf /var/dkorolev_profiles/$U.tar.gz Default dkorolev_extras)" > "/var/dkorolev_profiles/scripts/$U/doit.sh"
 sudo chmod a-w "/var/dkorolev_profiles/scripts/$U/"
 sudo chmod +x "/var/dkorolev_profiles/scripts/$U/doit.sh"
-echo -n 'Packing ... '
+echo -n "/var/dkorolev_profiles/scripts/$U/doit.sh ..."
 sudo "/var/dkorolev_profiles/scripts/$U/doit.sh"
-echo 'Packing done.'
+echo -e "\b\b\b\b: Done."
 
 sudo chown $U: /var/dkorolev_profiles/$U.tar.gz
 

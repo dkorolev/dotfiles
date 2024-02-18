@@ -84,9 +84,10 @@ fi
 
 sudo mkdir -p "/var/userdata/scripts/$U"
 sudo chown $U: "/var/userdata/scripts/$U"
+sudo a+x "/var/userdata/scripts/$U"
 sudo rm -f "/var/userdata/scripts/$U/doit.sh"
 sudo touch "/var/userdata/scripts/$U/doit.sh"
-sudo chown $U: "/var/userdata/scripts/$U"
+sudo chown $U: "/var/userdata/scripts/$U/doit.sh"
 sudo chmod 777 "/var/userdata/scripts/$U/doit.sh"
 
 cat <<EOF >"/var/userdata/scripts/$U/doit.sh"

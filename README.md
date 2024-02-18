@@ -40,7 +40,7 @@ DIR=/tmp/.dotfiles.$(date +%s) &&
 mkdir $DIR &&
 (cd $DIR; wget df.dima.ai -O df.zip) &&
 (cd $DIR; unzip df.zip) &&
-./$DIR/dotfiles-main/dkorolev_setup_system.sh &&
+$DIR/dotfiles-main/dkorolev_setup_system.sh &&
 (rm -rf $DIR)
 ```
 

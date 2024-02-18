@@ -70,7 +70,7 @@ sudo mkdir -p "/var/dkorolev_profiles/scripts/$U"
 sudo chown $U: "/var/dkorolev_profiles/scripts/$U"
 sudo chmod a+w "/var/dkorolev_profiles/scripts/$U/"
 
-echo <<EOF >"/var/dkorolev_profiles/scripts/$U/doit.sh"
+cat <<EOF >"/var/dkorolev_profiles/scripts/$U/doit.sh"
 #!/bin/bash
 set -e
 (cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; tar $U.tar.gz.$TS Default dkorolev_extras)

@@ -36,6 +36,7 @@ CHROME_DEFAULT_PROFILE_BASE_DIR="$(sudo "${SCRIPT_DIR}/chrome_default_profile_ba
 sudo mkdir -p "/var/dkorolev_profiles"
 
 EXTRAS_DIR="$CHROME_DEFAULT_PROFILE_BASE_DIR/dkorolev_extras"
+sudo rm -rf "$EXTRAS_DIR"
 sudo mkdir -p "$EXTRAS_DIR"
 sudo chown $U: "$EXTRAS_DIR"
 
@@ -85,8 +86,7 @@ EOF
 
 sudo chmod a-w "/var/dkorolev_profiles/scripts/$U/"
 sudo chmod +x "/var/dkorolev_profiles/scripts/$U/doit.sh"
-echo -n "/var/dkorolev_profiles/scripts/$U/doit.sh ..."
+echo 'Running `/var/dkorolev_profiles/scripts/$U/doit.sh`, it will prompt for encryption password.'
 sudo "/var/dkorolev_profiles/scripts/$U/doit.sh"
-echo -e "\b\b\b\b: Done."
 
 sudo rm -rf "$EXTRAS_DIR"

@@ -2,7 +2,7 @@
 #
 # This script is meant to be run right after `sudo adduser --encrypt-home ...`.
 #
-# Friendly reminder: run `./user_setup.sh` from under this user after running this script.
+# Friendly reminder: run `./setup_user.sh` from under this user after running this script.
 #
 # Please refer to the README for more details.
 

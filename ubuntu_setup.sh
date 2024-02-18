@@ -5,7 +5,7 @@
 # Friendly reminder. To add users later on:
 # 1) [ with root ] sudo adduser --encrypt-home $U
 # 2) [ with root ] sudo ./govern_user.sh $U
-# 3) [  as user ]  ./user_setup.sh
+# 3) [  as user ]  ./setup_user.sh
 
 set -e
 

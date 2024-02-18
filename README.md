@@ -37,7 +37,7 @@ Log in as this user in Gnome. In there:
 Then run:
 
 ```
-./user_setup.sh
+./setup_user.sh
 ```
 
 This should configure the Chromium profile, plus set the wallpaper and the profile pic, plus unpack user-specific files.

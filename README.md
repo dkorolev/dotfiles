@@ -49,7 +49,7 @@ mkdir $DIR &&
 Does not require `sudo`.
 
 ```
-/var/dotfiles/dkorolev_setup_user.sh
+/var/dkorolev_dotfiles/dkorolev_setup_user.sh
 ```
 
 ## SSH

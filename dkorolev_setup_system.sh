@@ -23,9 +23,6 @@ T_BEGIN=$(date +%s)
 sudo apt-get -y update
 sudo apt-get install -y git
 
-# TODO(dkorolev): The `Makefile` and a self-contained copy-pasteable command.
-# git clone https://github.com/dkorolev/dotfiles ~/.dotfiles
-
 ALL_APT_PACKAGES=""
 # TODO(dkorolev): have `#` comment until the EOL, not only if it's the first char of the line!
 for i in $(cat "${SCRIPT_DIR}/apt-packages.txt" | grep -v '^#'); do ALL_APT_PACKAGES="$ALL_APT_PACKAGES $i"; done
@@ -50,13 +47,10 @@ fi
 # Install the dotfiles.
 cp $(find "${SCRIPT_DIR}/" -maxdepth 1 -name '.*' -type f) ~
 
-# Save the dotfiles for future users.
-sudo rm -rf /var/dotfiles
-sudo cp -rv "${SCRIPT_DIR}" /var/dotfiles
-if [ "$(basename "${SCRIPT_DIR}")" != "dotfiles" ] ; then
-  sudo mv "/var/$(basename "${SCRIPT_DIR}")" /var/dotfiles
-fi
-sudo chmod -R a-w /var/dotfiles
+# Save this repo for future users.
+sudo rm -rf /var/dkorolev_dotfiles
+sudo cp -R "${SCRIPT_DIR}" /var/dkorolev_dotfiles
+sudo chmod -R a-w /var/dkorolev_dotfiles
 
 # Set the shell to `zsh`.
 sudo cp /etc/pam.d/chsh /etc/pam.d/chsh.save
@@ -65,7 +59,7 @@ sudo chsh -s $(which zsh) $(whoami)
 sudo mv /etc/pam.d/chsh.save /etc/pam.d/chsh
 
 # Also, copy the dotfiles into `root`, for the `sudo` shell to be beautified too.
-for i in $(find /var/dotfiles/ -maxdepth 1 -name '.*' -type f) ; do sudo cp $i /root ; sudo chown root: /root/$(basename $i) ; done
+for i in $(find /var/dkorolev_dotfiles/ -maxdepth 1 -name '.*' -type f) ; do sudo cp $i /root ; sudo chown root: /root/$(basename $i) ; done
 
 # No gnome initial setup for each and every new user.
 sudo mkdir -p /etc/skel/.config

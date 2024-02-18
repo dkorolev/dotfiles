@@ -35,7 +35,7 @@ CHROME_DEFAULT_PROFILE_BASE_DIR="$(sudo "${SCRIPT_DIR}/chrome_default_profile_ba
 
 sudo mkdir -p "/var/userdata"
 
-EXTRAS_DIR="$CHROME_DEFAULT_PROFILE_BASE_DIR/dkorolev_extras"
+EXTRAS_DIR="$CHROME_DEFAULT_PROFILE_BASE_DIR/Downloads"
 sudo rm -rf "$EXTRAS_DIR"
 sudo mkdir -p "$EXTRAS_DIR"
 sudo chown $U: "$EXTRAS_DIR"
@@ -78,7 +78,7 @@ sudo chmod 777 "/var/userdata/scripts/$U/doit.sh"
 cat <<EOF >"/var/userdata/scripts/$U/doit.sh"
 #!/bin/bash
 set -e
-(cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; tar czf $U.tar.gz.$TS Default dkorolev_extras)
+(cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; tar czf $U.tar.gz.$TS Default Downloads)
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; chown $U: $U.tar.gz.$TS)
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; chmod 600 $U.tar.gz.$TS)
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; rm -f $U.tar.gz)

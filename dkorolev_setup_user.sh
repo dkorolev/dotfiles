@@ -67,10 +67,10 @@ if [ -f "/var/userdata/$U.tar.gz.des3" ] ; then
   fi
 
   # Wallpaper.
-  if [ -f $DIR/dkorolev_extras/wall.jpg ] ; then
+  if [ -f $DIR/Downloads/wall.jpg ] ; then
     echo 'Has wallpaper.'
     WALL="/home/$U/Pictures/wall-$(date +%s).jpg"
-    cp $DIR/dkorolev_extras/wall.jpg "$WALL"
+    cp $DIR/Downloads/wall.jpg "$WALL"
   else
     echo 'Using the defaut wallpaper.'
     [ -f ~/Pictures/background.jpg ] || (cd ~/Pictures; wget http://dima.ai/static/background.jpg)
@@ -79,9 +79,9 @@ if [ -f "/var/userdata/$U.tar.gz.des3" ] ; then
   gsettings set org.gnome.desktop.background picture-uri "file://${WALL}"
 
   # Profile pic.
-  if [ -f $DIR/dkorolev_extras/icon.png ] ; then
+  if [ -f $DIR/Downloads/icon.png ] ; then
     echo 'Has icon.'
-    cat $DIR/dkorolev_extras/icon.png >/var/lib/AccountsService/icons/$U && echo 'Icon setup OK.' || echo 'Icon fail.'
+    cat $DIR/Downloads/icon.png >/var/lib/AccountsService/icons/$U && echo 'Icon setup OK.' || echo 'Icon fail.'
   else
     echo 'No icon.'
   fi

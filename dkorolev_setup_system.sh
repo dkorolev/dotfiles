@@ -51,10 +51,12 @@ fi
 cp $(find "${SCRIPT_DIR}/" -maxdepth 1 -name '.*' -type f) ~
 
 # Save the dotfiles for future users.
-sudo mkdir -p /var/dotfiles
-sudo chmod a+rw /var/dotfiles
-cp $(find "${SCRIPT_DIR}" -maxdepth 1 -name '.*' -type f) /var/dotfiles
-sudo chmod a-w /var/dotfiles
+sudo rm -rf /var/dotfiles
+sudo cp -rv "${SCRIPT_DIR}" /var/dotfiles
+if [ "$(basename "${SCRIPT_DIR}")" != "dotfiles" ] ; then
+  sudo mv "/var/$(basename "${SCRIPT_DIR}")" /var/dotfiles
+fi
+sudo chmod -R a-w /var/dotfiles
 
 # Set the shell to `zsh`.
 sudo cp /etc/pam.d/chsh /etc/pam.d/chsh.save

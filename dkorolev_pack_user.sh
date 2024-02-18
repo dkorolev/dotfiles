@@ -70,24 +70,24 @@ fi
 
 sudo mkdir -p "/var/dkorolev_profiles/scripts/$U"
 sudo chown $U: "/var/dkorolev_profiles/scripts/$U"
-sudo chmod a+w "/var/dkorolev_profiles/scripts/$U/"
+sudo chmod 600 "/var/dkorolev_profiles/scripts/$U/"
 
 cat <<EOF >"/var/dkorolev_profiles/scripts/$U/doit.sh"
 #!/bin/bash
 set -e
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; tar czf $U.tar.gz.$TS Default dkorolev_extras)
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; chown $U: $U.tar.gz.$TS)
-(cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; chmod a-r $U.tar.gz.$TS)
+(cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; chmod 600 $U.tar.gz.$TS)
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; rm -f $U.tar.gz)
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; mv $U.tar.gz.$TS $U.tar.gz)
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; openssl des3 -pbkdf2 <$U.tar.gz >$U.tar.gz.des3)
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; rm -f $U.tar.gz)
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; chown $U: $U.tar.gz.des3)
-(cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; chmod a-r $U.tar.gz.des3)
+(cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; chmod 600 $U.tar.gz.des3)
 (cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; mv $U.tar.gz.des3 /var/dkorolev_profiles/)
 EOF
 
-sudo chmod a-w "/var/dkorolev_profiles/scripts/$U/"
+sudo chmod 600 "/var/dkorolev_profiles/scripts/$U/"
 sudo chmod +x "/var/dkorolev_profiles/scripts/$U/doit.sh"
 echo 'Running `/var/dkorolev_profiles/scripts/$U/doit.sh`, it will prompt for encryption password.'
 sudo "/var/dkorolev_profiles/scripts/$U/doit.sh"

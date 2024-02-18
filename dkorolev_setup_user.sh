@@ -47,12 +47,12 @@ fi
 
 # If there is a profile to restore.
 
-if [ -f "/var/dkorolev_profiles/$U.tar.gz.des3" ] ; then
+if [ -f "/var/userdata/$U.tar.gz.des3" ] ; then
   echo 'A profile to restore is present. Restoring.'
 
   DIR=~/.unpacked.$(date +%s)
   mkdir $DIR
-  (cd $DIR; openssl des3 -d -pbkdf2 <"/var/dkorolev_profiles/$U.tar.gz.des3" | tar xz)
+  (cd $DIR; openssl des3 -d -pbkdf2 <"/var/userdata/$U.tar.gz.des3" | tar xz)
 
   # Chrome
   CHROME_BASE=$(./chrome_default_profile_base_dir.sh $U)

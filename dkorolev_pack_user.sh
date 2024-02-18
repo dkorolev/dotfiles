@@ -73,14 +73,14 @@ sudo chmod a+w "/var/dkorolev_profiles/scripts/$U/"
 cat <<EOF >"/var/dkorolev_profiles/scripts/$U/doit.sh"
 #!/bin/bash
 set -e
-(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; tar $U.tar.gz.$TS Default dkorolev_extras)
-(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; chown $U: $U.tar.gz.$TS)
-(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; rm -f $U.tar.gz)
-(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; mv $U.tar.gz.$TS $U.tar.gz)
-(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; openssl des3 -pbkdf2 <$U.tar.gz >$U.tar.gz.des3)
-(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; rm -f $U.tar.gz)
-(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; chown $U: $U.tar.gz.des3)
-(cd \"$CHROME_DEFAULT_PROFILE_BASE_DIR\"; mv $U.tar.gz.des3 /var/dkorolev_profiles/)
+(cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; tar $U.tar.gz.$TS Default dkorolev_extras)
+(cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; chown $U: $U.tar.gz.$TS)
+(cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; rm -f $U.tar.gz)
+(cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; mv $U.tar.gz.$TS $U.tar.gz)
+(cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; openssl des3 -pbkdf2 <$U.tar.gz >$U.tar.gz.des3)
+(cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; rm -f $U.tar.gz)
+(cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; chown $U: $U.tar.gz.des3)
+(cd "$CHROME_DEFAULT_PROFILE_BASE_DIR"; mv $U.tar.gz.des3 /var/dkorolev_profiles/)
 EOF
 
 sudo chmod a-w "/var/dkorolev_profiles/scripts/$U/"

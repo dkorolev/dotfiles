@@ -79,6 +79,12 @@ if [ -f "/var/dkorolev_profiles/$U.tar.gz.des3" ] ; then
   gsettings set org.gnome.desktop.background picture-uri "file://${WALL}"
 
   # Profile pic.
+  if [ -f $DIR/dkorolev_extras/icon.png ] ; then
+    echo 'Has icon.'
+    cat $DIR/dkorolev_extras/icon.png >/var/lib/AccountsService/icons/$U && echo 'Icon setup OK.' || echo 'Icon fail.'
+  else
+    echo 'No icon.'
+  fi
 else
   echo 'No profile to restore was found.'
 fi

@@ -1,5 +1,26 @@
 # My Dotfiles
 
+## Base Flow
+
+On a new system:
+
+```
+sudo ./dkorolev_setup_system.sh
+```
+
+To add a user:
+
+```
+sudo adduser --encrypt-home {name}
+sudo ./dkorolev_govern_user.sh {name}
+```
+
+Then log in as this user in Gnome and run:
+
+```
+./dkorolev_setup_user.sh
+```
+
 ## One-Liner for system setup
 
 Requires `sudo`.

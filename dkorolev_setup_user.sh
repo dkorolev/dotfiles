@@ -73,7 +73,7 @@ if [ -f "/var/dkorolev_profiles/$U.tar.gz.des3" ] ; then
     cp $DIR/dkorolev_extras/wall.jpg "$WALL"
   else
     echo 'Using the defaut wallpaper.'
-    (cd ~/Pictures; wget http://dima.ai/static/background.jpg)
+    [ -f ~/Pictures/background.jpg ] || (cd ~/Pictures; wget http://dima.ai/static/background.jpg)
     WALL="/home/$U/Pictures/background.jpg"
   fi
   gsettings set org.gnome.desktop.background picture-uri "file://${WALL}"

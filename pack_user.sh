@@ -44,13 +44,14 @@ sudo mkdir -p "$EXTRAS_DIR"
 sudo chown $U: "$EXTRAS_DIR"
 
 while [ "$1" != "" ] ; do
-  if [ -d "/home/$U/$1" ] ; then
+  if sudo [ -d "/home/$U/$1" ] ; then
     echo "Taking dir '/home/$U/$1'."
     sudo cp -rv "/home/$U/$1" "$EXTRA_DIR"
   else
     echo "Error, '$1' is not a dir under '/home/$U'."
     exit 1
   fi
+  shift
 done
 
 ICON="$(sudo cat "/var/lib/AccountsService/users/$U" | grep '^Icon=' | sed "s/^Icon=//")"

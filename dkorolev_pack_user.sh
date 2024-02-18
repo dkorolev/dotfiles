@@ -21,7 +21,7 @@ elif ! ( [ "$EUID" -eq 0 ] || SUDO_ASKPASS=/bin/false sudo -A /bin/true >/dev/nu
   exit 1
 fi
 
-if sudo [ -f /home/dima/Access-Your-Private-Data.desktop ] ; then
+if sudo [ -f /home/$U/Access-Your-Private-Data.desktop ] ; then
   echo 'Need to log in as that user since their homedir is encrypted.'
   exit 1
 fi

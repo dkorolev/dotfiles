@@ -74,6 +74,7 @@ echo yes | sudo tee /etc/skel/.config/gnome-initial-setup-done >/dev/null
 
 # Prepare the `wheel` group.
 sudo addgroup wheel >/dev/null 2>&1 && echo 'Group `wheel` created.' || echo 'Group `wheel` already exists.'
+# TODO(dkorolev): This `tee` is f'n broken! Although I'm writing this from a new box, which is a plus.
 sudo cat /etc/sudoers | grep 'editor=' >/dev/null && echo 'Already using `vim` for `visuso`.' || echo 'Defaults editor=/usr/bin/vim' | sudo tee /etc/sudoers >/dev/null
 sudo cat /etc/sudoers | grep NOPASSWD >/dev/null && echo 'Already has `NOPASSWD` for `wheel`.' || echo '%wheel ALL=(ALL) NOPASSWD:ALL' | sudo tee /etc/sudoers >/dev/null
 

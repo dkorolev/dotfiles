@@ -29,7 +29,11 @@ else
 fi
 
 # Install the dotfiles.
-for i in $(find /var/dotfiles/ -maxdepth 1 -name '.*' -type f) ; do cp $i ~ ; chown $U: ~/$(basename $i) ; done
+for i in $(find /var/dotfiles/ -maxdepth 1 -name '.*' -type f) ; do
+  cp $i ~
+  chmod +w ~/$(basename $i)
+  chown $U: ~/$(basename $i)
+done
 
 # Install YCM.
 if ! [ -s ~/.ycm_installed ] ; then

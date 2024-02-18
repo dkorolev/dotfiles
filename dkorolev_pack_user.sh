@@ -70,6 +70,7 @@ fi
 
 sudo mkdir -p "/var/dkorolev_profiles/scripts/$U"
 sudo chown $(whoami): "/var/dkorolev_profiles/scripts/$U"
+sudo rm -f "/var/dkorolev_profiles/scripts/$U/doit.sh"
 
 cat <<EOF >"/var/dkorolev_profiles/scripts/$U/doit.sh"
 #!/bin/bash

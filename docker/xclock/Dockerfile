@@ -2,7 +2,7 @@
 #
 # What it does is:
 #
-# - Create the user and group, same as the caled.
+# - Create the user and group, same as the caller.
 # - Make them a `sudo`-enabled user.
 # - Install a few base packages.
 # - Including `x11-apps`, which contains `x11-clock`.

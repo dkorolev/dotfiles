@@ -11,19 +11,18 @@
 #
 # Run instructions:
 #
-# In my (@dkorolev): `.zshrc` I have three aliases:
+# Personally, I (@dkorolev) have three aliases in my shell, also defined in this repo:
 #
 # alias db='podman build --build-arg UID=$(id -u) --build-arg GID=$(id -g) --build-arg UNAME=$(whoami) .'
 # alias dr='podman run --net host -e DISPLAY -it $(podman build --build-arg UID=$(id -u) --build-arg GID=$(id -g) --build-arg UNAME=$(whoami) -q .)'
+# alias drx='xhost + && podman run --net host -e DISPLAY -it $(podman build --build-arg UID=$(id -u) --build-arg GID=$(id -g) --build-arg UNAME=$(whoami) -q .)'
 #
 # The `db` one stands for `docker build` from the current directory, passing all three user-related arguments.
 # It uses Podman, but should work with Docker too.
-#
 # The `dr` one is `docker run`, although it uses Podman too.
-#
 # The `drx` one is same as `dr`, but it also executes `xhost +` beforehand, making sure X forwarding is enabled by the host.
 #
-# With the above aliases and with this `Dockerfile`, just `drx xclock` should open the clock.
+# With the above aliases and with this `Dockerfile`, just `drx xclock` should display the clock on your display.
 #
 # If you are not comfortable with `xhost +` being on on your host machine as a side effect,
 # disable it with `xhost -`, and/or control it manually and use `dr`, not `drx`.

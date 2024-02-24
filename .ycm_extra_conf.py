@@ -14,6 +14,10 @@ def Settings(**kwargs):
         '-isystem', './googletest/googletest/include',
         '-isystem', '../googletest/googletest/include',
         '-isystem', '../../googletest/googletest/include',
+        # For `leveldb`.
+        '-I', './leveldb/include',
+        '-I', '../leveldb/include',
+        '-I', '../../leveldb/include',
       ]
     }
   else:

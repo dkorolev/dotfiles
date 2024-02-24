@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=TgApp
+Exec=/var/dotfiles/docker/telegram/telegram.sh
+Type=Application
+Terminal=false
+Encoding=UTF-8

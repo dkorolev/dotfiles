@@ -6,6 +6,8 @@ def Settings(**kwargs):
         '-Wextra',
         '-Wno-unused-includes',
         '-std=c++17',
+        # Treat `.h` headers as `.hpp` / C++ ones.
+        '-x', 'c++',
         # For `current` headers.
         '-I', './current/',
         '-I', '../current/',

@@ -4,7 +4,7 @@ set -e
 
 SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 
-U="$(whoami)"
+U="$USER"
 
 (cd "$SCRIPT_DIR"; podman build --build-arg UID=$(id -u) --build-arg GID=$(id -g) --build-arg UNAME="$U" .)
 C="$(cd "$SCRIPT_DIR"; podman build --build-arg UID=$(id -u) --build-arg GID=$(id -g) --build-arg UNAME="$U" -q .)"

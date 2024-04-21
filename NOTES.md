@@ -1,5 +1,12 @@
 # Random Notes
 
+## Fullscreen `meld` in Windows
+
+```
+sudo vim /usr/share/glib-2.0/schemas/org.gnome.meld.gschema.xml
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+```
+
 ## Headers for `ycm`
 
 ```

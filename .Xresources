@@ -1,0 +1,8 @@
+COMMENT: "Don't forget `xrdb .Xresources` for these changes to take effect."
+
+xterm*background:   black
+xterm*foreground:   blue
+
+XTerm*renderFont: true
+XTerm*faceName: CascadiaMono
+XTerm*faceSize: 12

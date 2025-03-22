@@ -73,3 +73,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export EDITOR=vim
+
+# For `screen`.
+bindkey '^R' history-incremental-search-backward
+
+# For each terminal to have its own history!
+unsetopt sharehistory
+
+# I am doing Rust now! And this tab-completed file name is effing annoying, and it can't be renamed.
+zstyle ':completion:*' ignored-patterns 'Cargo.lock'

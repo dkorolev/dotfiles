@@ -82,3 +82,6 @@ unsetopt sharehistory
 
 # I am doing Rust now! And this tab-completed file name is effing annoying, and it can't be renamed.
 zstyle ':completion:*' ignored-patterns 'Cargo.lock'
+
+# For `difftastic` to be used as `git difftool` on a Mac.
+alias cls='osascript -e "tell application \"System Events\" to keystroke \"k\" using command down"'

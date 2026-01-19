@@ -55,7 +55,7 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git*' formats "(%F{green}%b%f) "
 
 precmd() {
-    vcs_info
+  vcs_info && [[ -t 0 ]] && stty sane 2>/dev/null
 }
 
 setopt prompt_subst
@@ -85,3 +85,23 @@ zstyle ':completion:*' ignored-patterns 'Cargo.lock'
 
 # For `difftastic` to be used as `git difftool` on a Mac.
 alias cls='osascript -e "tell application \"System Events\" to keystroke \"k\" using command down"'
+
+alias d='git difftool'
+alias gs='git status'
+alias gp='git pull'
+alias gl='git log'
+alias ds='git diff --no-ext-diff'
+alias dn='git diff --no-ext-diff --name-only'
+alias wip='git add --all && git commit -m wip'
+alias v='vim src/main.rs'
+alias b='cargo build'
+alias r='cargo run'
+alias t='cargo test'
+alias ft='cargo fmt'
+
+alias tmx='/Users/dima/tmx.sh'
+
+alias pls=/Users/dima/.local/bin/pls
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# TODO(dkorolev): Add `xs` for `xsel` on a Mac.

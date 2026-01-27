@@ -13,13 +13,13 @@ fi
 
 setopt histignorealldups sharehistory
 
-bindkey "^[[H"    beginning-of-line
-bindkey "^[[F"    end-of-line
-bindkey "^[[3~"   delete-char
-bindkey "^[[1;5D" backward-word
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1~"   beginning-of-line
-bindkey "^[[4~"   end-of-line
+# bindkey "^[[H"    beginning-of-line
+# bindkey "^[[F"    end-of-line
+# bindkey "^[[3~"   delete-char
+# bindkey "^[[1;5D" backward-word
+# bindkey "^[[1;5C" forward-word
+# bindkey "^[[1~"   beginning-of-line
+# bindkey "^[[4~"   end-of-line
 
 # Do not make sounds on tab completion in WSL.
 unsetopt beep
@@ -36,7 +36,7 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
+#eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
@@ -53,6 +53,11 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git*' formats "(%F{green}%b%f) "
+
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' unstagedstr '*'
+zstyle ':vcs_info:git:*' stagedstr '+'
+zstyle ':vcs_info:git:*' actionformats '%b|%a %u%c'
 
 precmd() {
   vcs_info && [[ -t 0 ]] && stty sane 2>/dev/null
@@ -105,3 +110,5 @@ alias pls=/Users/dima/.local/bin/pls
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # TODO(dkorolev): Add `xs` for `xsel` on a Mac.
+
+export LESS='-R --no-init --quit-if-one-screen'

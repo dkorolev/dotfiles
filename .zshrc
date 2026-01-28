@@ -52,7 +52,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # TODO(dkorolev): I'd love to have more Git integration, but `oh-my-zsh` looks too heavy to my taste.
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git*' formats "(%F{green}%b%f) "
+zstyle ':vcs_info:git*' formats "(%F{green}%b%f%u%c) "
 
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' unstagedstr '*'
@@ -73,9 +73,9 @@ else
   prompt='[%F{grey}%m%f] %F{#0080ff}%d/%f ${vcs_info_msg_0_}$ '
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export EDITOR=vim
 

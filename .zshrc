@@ -1,10 +1,12 @@
 alias ls='ls --color=auto'
 alias jsb='js-beautify --indent-size=2 -n'
 
+# TODO(dkorolev): Reconsider these, perhaps they should use `docker` if `podman` is not installed.
 alias db='podman build --build-arg UID=$(id -u) --build-arg GID=$(id -g) --build-arg UNAME=$(whoami) .'
 alias dr='podman run --net host -e DISPLAY -it $(podman build --build-arg UID=$(id -u) --build-arg GID=$(id -g) --build-arg UNAME=$(whoami) -q .)'
 alias drx='xhost + && podman run --net host -e DISPLAY -it $(podman build --build-arg UID=$(id -u) --build-arg GID=$(id -g) --build-arg UNAME=$(whoami) -q .)'
 
+# TODO(dkorolev): I'm using `xs` now, need to refactor these.
 if [ "$WSL_DISTRO_NAME" != '' ] ; then
   alias xc='clip.exe'
 else
@@ -97,6 +99,7 @@ alias gp='git pull'
 alias gl='git log'
 alias ds='git diff --no-ext-diff'
 alias dn='git diff --no-ext-diff --name-only'
+# TODO(dkorolev): Add a date here to the WIP commit, and perhaps turn this into a script like `dk`.
 alias wip='git add --all && git commit -m wip'
 alias v='vim src/main.rs'
 alias b='cargo build'
@@ -107,8 +110,56 @@ alias ft='cargo fmt'
 alias tmx='/Users/dima/tmx.sh'
 
 alias pls=/Users/dima/.local/bin/pls
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # TODO(dkorolev): Add `xs` for `xsel` on a Mac.
 
 export LESS='-R --no-init --quit-if-one-screen'
+
+# TODO(dkorolev): Make this a MacOS-only thing.
+alias xs='pbcopy'
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# My Docker + Claude setup.
+alias dk="~/github/dimacurrentai/dotfiles/dk.sh"
+alias c=claude
+
+# TODO(dkorolev): Make sure no OS-specific thingies go here,
+# perhaps I'm best to have a dedicated dotfile to `source` from `.zshrc`.
+
+# zerobrew
+export ZEROBREW_DIR=/Users/dima/.zerobrew
+export ZEROBREW_BIN=/Users/dima/.zerobrew/bin
+export ZEROBREW_ROOT=/opt/zerobrew
+export ZEROBREW_PREFIX=/opt/zerobrew/prefix
+export PKG_CONFIG_PATH="$ZEROBREW_PREFIX/lib/pkgconfig:${PKG_CONFIG_PATH:-}"
+
+# SSL/TLS certificates (only if ca-certificates is installed)
+if [ -f "$ZEROBREW_PREFIX/opt/ca-certificates/share/ca-certificates/cacert.pem" ]; then
+  export CURL_CA_BUNDLE="$ZEROBREW_PREFIX/opt/ca-certificates/share/ca-certificates/cacert.pem"
+  export SSL_CERT_FILE="$ZEROBREW_PREFIX/opt/ca-certificates/share/ca-certificates/cacert.pem"
+elif [ -f "$ZEROBREW_PREFIX/etc/ca-certificates/cacert.pem" ]; then
+  export CURL_CA_BUNDLE="$ZEROBREW_PREFIX/etc/ca-certificates/cacert.pem"
+  export SSL_CERT_FILE="$ZEROBREW_PREFIX/etc/ca-certificates/cacert.pem"
+elif [ -f "$ZEROBREW_PREFIX/share/ca-certificates/cacert.pem" ]; then
+  export CURL_CA_BUNDLE="$ZEROBREW_PREFIX/share/ca-certificates/cacert.pem"
+  export SSL_CERT_FILE="$ZEROBREW_PREFIX/share/ca-certificates/cacert.pem"
+fi
+
+if [ -d "$ZEROBREW_PREFIX/etc/ca-certificates" ]; then
+  export SSL_CERT_DIR="$ZEROBREW_PREFIX/etc/ca-certificates"
+elif [ -d "$ZEROBREW_PREFIX/share/ca-certificates" ]; then
+  export SSL_CERT_DIR="$ZEROBREW_PREFIX/share/ca-certificates"
+fi
+
+# Helper function to safely append to PATH
+_zb_path_append() {
+    local argpath="$1"
+    case ":${PATH}:" in
+        *:"$argpath":*) ;;
+        *) export PATH="$argpath:$PATH" ;;
+    esac;
+}
+
+_zb_path_append "$ZEROBREW_BIN"
+_zb_path_append "$ZEROBREW_PREFIX/bin"

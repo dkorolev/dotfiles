@@ -4,11 +4,12 @@ set -e
 : "${DK_UID:=1000}" "${DK_GID:=1000}" "${DK_USER:=user}"
 home="/home/$DK_USER"
 
-# Ensure a group with the right GID exists
-if ! awk -F: -v g="$DK_GID" '$3==g{exit 0} END{exit 1}' /etc/group 2>/dev/null; then
-  addgroup -g "$DK_GID" "$DK_USER"
-fi
+# Reuse existing group for this GID, or create one
 group=$(awk -F: -v g="$DK_GID" '$3==g{print $1; exit}' /etc/group)
+if [ -z "$group" ]; then
+  addgroup -g "$DK_GID" "$DK_USER"
+  group="$DK_USER"
+fi
 
 # Create the user with matching UID
 if ! id "$DK_USER" >/dev/null 2>&1; then

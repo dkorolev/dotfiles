@@ -67,7 +67,9 @@ precmd() {
 
 setopt prompt_subst
 
-if [[ $USER == "toor" ]] ; then
+if [[ -n "${DK_SANDBOX:-}" ]] ; then
+  prompt='[%F{magenta}SANDBOX%f] %F{#0080ff}%d/%f ${vcs_info_msg_0_}$ '
+elif [[ $USER == "toor" ]] ; then
   prompt='[%F{red}%m%f] wheel %F{green}%%%f '
 elif [[ $UID == 0 || $EUID == 0 ]] ; then
   prompt='[%F{red}%m%f] %d/ ${vcs_info_msg_0_}%F{red}#%f '

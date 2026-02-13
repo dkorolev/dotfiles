@@ -17,17 +17,21 @@ if ! id "$DK_USER" >/dev/null 2>&1; then
 fi
 
 cp /etc/skel/.zshrc /etc/skel/.dima.shellrc "$home/"
+echo 'export GIT_EXTERNAL_DIFF=difft' >> "$home/.zshrc"
 mkdir -p "$home/.cache/zsh"
 chown -R "$DK_UID:$DK_GID" "$home"
+
+# Configure git: user identity if provided.
+gc="$home/.gitconfig"
+[ -n "${DK_GIT_USER_NAME:-}" ] && git config -f "$gc" user.name "$DK_GIT_USER_NAME"
+[ -n "${DK_GIT_USER_EMAIL:-}" ] && git config -f "$gc" user.email "$DK_GIT_USER_EMAIL"
+chown "$DK_UID:$DK_GID" "$gc"
 
 # Start in /app; if a repo was passed through, symlink it there.
 mkdir -p /app
 workdir="/app"
 if [ -n "${DK_REPO_NAME:-}" ] && [ -d /tmp/upstream ]; then
   ln -s /tmp/upstream "/app/$DK_REPO_NAME"
-  [ -n "${DK_GIT_USER_NAME:-}" ] && git config -f "$home/.gitconfig" user.name "$DK_GIT_USER_NAME"
-  [ -n "${DK_GIT_USER_EMAIL:-}" ] && git config -f "$home/.gitconfig" user.email "$DK_GIT_USER_EMAIL"
-  chown "$DK_UID:$DK_GID" "$home/.gitconfig"
   workdir="/app/$DK_REPO_NAME"
 fi
 

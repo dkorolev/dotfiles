@@ -36,6 +36,7 @@ docker run -it --hostname dk \
   -e DK_UID="$(id -u)" \
   -e DK_GID="$(id -g)" \
   -e DK_USER="$(whoami)" \
+  -e DK_SANDBOX=1 \
   ${DK_REPO_NAME:+-e "DK_REPO_NAME=$DK_REPO_NAME"} \
   ${DK_GIT_USER_NAME:+-e "DK_GIT_USER_NAME=$DK_GIT_USER_NAME"} \
   ${DK_GIT_USER_EMAIL:+-e "DK_GIT_USER_EMAIL=$DK_GIT_USER_EMAIL"} \

@@ -17,7 +17,6 @@ if ! id "$DK_USER" >/dev/null 2>&1; then
 fi
 
 cp /etc/skel/.zshrc /etc/skel/.dima.shellrc "$home/"
-echo 'export GIT_EXTERNAL_DIFF=difft' >> "$home/.zshrc"
 mkdir -p "$home/.cache/zsh"
 chown -R "$DK_UID:$DK_GID" "$home"
 

@@ -8,4 +8,4 @@ if ! (cd "$SCRIPT_DIR/docker/dk"; make -q) ; then
   (cd "$SCRIPT_DIR/docker/dk"; make >/dev/null)
   echo 'Rebuilt successful.'
 fi
-docker run -it $(cat "$SCRIPT_DIR/docker/dk/tag")
+docker run -it --hostname dk $(cat "$SCRIPT_DIR/docker/dk/tag")

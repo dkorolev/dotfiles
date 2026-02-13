@@ -71,6 +71,21 @@ If the host repo has uncommitted changes, `dk` refuses to start and lists what's
 
 Running `dk` from a non-git directory gives a plain container with no repo.
 
+### Claude Code in dk
+
+Claude Code is pre-installed in the dk container. On first use you need to authenticate once and save the credentials:
+
+1. Run `dk` — you'll see a message that Claude is not configured.
+2. Inside the container, run `claude` and complete the authentication flow.
+3. Run `save_claude_dk_setup` — this snapshots your `~/.claude` directory.
+4. Exit the container — `dk` picks up the snapshot and saves it to `~/.dk.claude_key` on the host.
+
+On subsequent runs, `dk` automatically restores `~/.claude` inside the container.
+
+The `c` alias runs `claude --dangerously-skip-permissions` for convenience.
+
+To re-authenticate, delete `~/.dk.claude_key` and repeat the steps above.
+
 ## Useful Commands
 
 ### SSH

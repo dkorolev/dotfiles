@@ -5,7 +5,8 @@ RUN cd /src/moor && go build -o /moor .
 
 FROM alpine:3.20
 RUN apk update
-RUN apk add zsh zsh-vcs vim curl difftastic apg git su-exec
+RUN apk add zsh zsh-vcs vim curl difftastic apg git su-exec nodejs npm jq yq
+RUN npm install -g @anthropic-ai/claude-code
 COPY --from=moor-build /moor /usr/local/bin/moor
 
 COPY .zshrc .dima.shellrc /etc/skel/

@@ -20,8 +20,9 @@ cp /etc/skel/.zshrc /etc/skel/.dima.shellrc "$home/"
 mkdir -p "$home/.cache/zsh"
 chown -R "$DK_UID:$DK_GID" "$home"
 
-# Configure git: user identity if provided.
+# Configure git: difftastic and user identity.
 gc="$home/.gitconfig"
+git config -f "$gc" diff.external difft
 [ -n "${DK_GIT_USER_NAME:-}" ] && git config -f "$gc" user.name "$DK_GIT_USER_NAME"
 [ -n "${DK_GIT_USER_EMAIL:-}" ] && git config -f "$gc" user.email "$DK_GIT_USER_EMAIL"
 chown "$DK_UID:$DK_GID" "$gc"

@@ -25,6 +25,9 @@ mkdir -p /app
 workdir="/app"
 if [ -n "${DK_REPO_NAME:-}" ] && [ -d /tmp/upstream ]; then
   ln -s /tmp/upstream "/app/$DK_REPO_NAME"
+  [ -n "${DK_GIT_USER_NAME:-}" ] && git config -f "$home/.gitconfig" user.name "$DK_GIT_USER_NAME"
+  [ -n "${DK_GIT_USER_EMAIL:-}" ] && git config -f "$home/.gitconfig" user.email "$DK_GIT_USER_EMAIL"
+  chown "$DK_UID:$DK_GID" "$home/.gitconfig"
   workdir="/app/$DK_REPO_NAME"
 fi
 

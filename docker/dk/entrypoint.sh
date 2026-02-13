@@ -7,14 +7,14 @@ home="/app"
 # Reuse existing group for this GID, or create one
 group=$(awk -F: -v g="$DK_GID" '$3==g{print $1; exit}' /etc/group)
 if [ -z "$group" ]; then
-  addgroup -g "$DK_GID" "$DK_USER"
+  groupadd --gid "$DK_GID" "$DK_USER"
   group="$DK_USER"
 fi
 
 # Create the user with /app as home.
 mkdir -p "$home"
 if ! id "$DK_USER" >/dev/null 2>&1; then
-  adduser -D -u "$DK_UID" -G "$group" -s /bin/zsh -h "$home" "$DK_USER"
+  useradd --uid "$DK_UID" --gid "$group" --shell /bin/zsh --home-dir "$home" --no-create-home "$DK_USER"
 fi
 
 cp /etc/skel/.zshrc /etc/skel/.dima.shellrc "$home/"
@@ -41,4 +41,4 @@ fi
 
 chown -R "$DK_UID:$DK_GID" "$home"
 
-exec su-exec "$DK_USER" /bin/sh -c "cd '$workdir' && exec /bin/zsh -l"
+exec gosu "$DK_USER" /bin/sh -c "cd '$workdir' && exec /bin/zsh -l"

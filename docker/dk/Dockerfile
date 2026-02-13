@@ -13,4 +13,6 @@ COPY docker/dk/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh && mkdir -p /etc/skel/.cache/zsh
 
 ENV TERM=xterm-256color
+ENV PAGER=moor
+ENV GIT_PAGER=moor
 ENTRYPOINT ["/entrypoint.sh"]

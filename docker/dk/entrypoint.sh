@@ -20,4 +20,12 @@ cp /etc/skel/.zshrc /etc/skel/.dima.shellrc "$home/"
 mkdir -p "$home/.cache/zsh"
 chown -R "$DK_UID:$DK_GID" "$home"
 
-exec su-exec "$DK_USER" /bin/zsh -l
+# Start in /app; if a repo was passed through, symlink it there.
+mkdir -p /app
+workdir="/app"
+if [ -n "${DK_REPO_NAME:-}" ] && [ -d /tmp/upstream ]; then
+  ln -s /tmp/upstream "/app/$DK_REPO_NAME"
+  workdir="/app/$DK_REPO_NAME"
+fi
+
+exec su-exec "$DK_USER" /bin/sh -c "cd '$workdir' && exec /bin/zsh -l"

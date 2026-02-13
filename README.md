@@ -50,6 +50,27 @@ Done!
 wget df.dima.ai -O df.zip && unzip df.zip && mv dotfiles-main dotfiles
 ```
 
+## dk — Docker Dev Container
+
+`dk` launches an ephemeral Docker container with your user identity and a zsh shell.
+
+### Git repo passthrough
+
+When you run `dk` from inside a clean git repo, the repo is automatically available inside the container:
+
+1. `dk` clones your current branch into `.dk.tmp/upstream` and starts the container.
+2. Inside the container you land in `/app/<repo-name>/` — this is the clone.
+3. Make commits as usual.
+4. When you exit the container, `dk` detects new commits and prompts:
+   ```
+   Pull changes from dk container into <repo-name>? [Y/n]
+   ```
+   Pressing Enter (default: yes) fast-forward merges the changes into your host branch.
+
+If the host repo has uncommitted changes, `dk` refuses to start and lists what's dirty.
+
+Running `dk` from a non-git directory gives a plain container with no repo.
+
 ## Useful Commands
 
 ### SSH

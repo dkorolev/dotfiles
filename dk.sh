@@ -17,7 +17,7 @@ fi
 DK_BRANCH="$(git -C "$repo_root" rev-parse --abbrev-ref HEAD)"
 
 # Generate a random name in ABCD-EFG-HIJK format.
-REMOTE_DIR=$(LC_ALL=C tr -dc 'A-Z' < /dev/urandom | head -c 11 | sed 's/\(.\{4\}\)\(.\{3\}\)\(.\{4\}\)/\1-\2-\3/')
+REMOTE_DIR=$(head -c 256 /dev/urandom | LC_ALL=C tr -dc 'A-Z' | head -c 11 | sed 's/\(.\{4\}\)\(.\{3\}\)\(.\{4\}\)/\1-\2-\3/')
 REMOTE_LABEL="ubu-$REMOTE_DIR"
 
 # Create a repo on ubu and push to it.

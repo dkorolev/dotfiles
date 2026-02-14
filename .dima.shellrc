@@ -101,7 +101,7 @@ alias d='git difftool'
 alias gs='git status'
 alias gp='git pull'
 alias gl='git log'
-alias ds='git diff --no-ext-diff'
+alias ds='git diff'
 alias dn='git diff --no-ext-diff --name-only'
 # TODO(dkorolev): Add a date here to the WIP commit, and perhaps turn this into a script like `dk`.
 alias wip='git add --all && git commit -m wip'
@@ -122,4 +122,8 @@ if [[ "$(uname)" == "Darwin" ]] ; then
   alias dk="~/github/dimacurrentai/dotfiles/dk.sh"
 fi
 
-alias c=claude
+if [[ -n "${INSIDE_DK_ENV:-}" ]] ; then
+  alias c='claude --dangerously-skip-permissions'
+else
+  alias c=claude
+fi

@@ -14,7 +14,7 @@ fi
 # Create the user with /app as home.
 mkdir -p "$home"
 if ! id "$DK_USER" >/dev/null 2>&1; then
-  useradd --uid "$DK_UID" --gid "$group" --shell /bin/zsh --home-dir "$home" --no-create-home "$DK_USER"
+  useradd -K UID_MIN=500 --uid "$DK_UID" --gid "$group" --shell /bin/zsh --home-dir "$home" --no-create-home "$DK_USER"
 fi
 
 cp /etc/skel/.zshrc /etc/skel/.dima.shellrc "$home/"

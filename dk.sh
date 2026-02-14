@@ -26,6 +26,11 @@ git -C "$repo_root" remote add "$REMOTE_LABEL" "ubu:$REMOTE_DIR"
 git -C "$repo_root" push --quiet "$REMOTE_LABEL" "$DK_BRANCH"
 ssh ubu "git -C '$REMOTE_DIR' checkout --quiet '$DK_BRANCH'"
 
+# Forward local git identity to the remote repo.
+git_name=$(git -C "$repo_root" config user.name)
+git_email=$(git -C "$repo_root" config user.email)
+ssh ubu "git -C '$REMOTE_DIR' config user.name '$git_name' && git -C '$REMOTE_DIR' config user.email '$git_email'"
+
 echo "Pushed $DK_BRANCH → ubu:~/$REMOTE_DIR ($REMOTE_LABEL)"
 
 # SSH into ubu, landing in the repo directory.

@@ -93,8 +93,9 @@ unsetopt sharehistory
 # I am doing Rust now! And this tab-completed file name is effing annoying, and it can't be renamed.
 zstyle ':completion:*' ignored-patterns 'Cargo.lock'
 
-# For `difftastic` to be used as `git difftool` on a Mac.
-alias cls='osascript -e "tell application \"System Events\" to keystroke \"k\" using command down"'
+if [[ "$(uname)" == "Darwin" ]] ; then
+  alias cls='osascript -e "tell application \"System Events\" to keystroke \"k\" using command down"'
+fi
 
 alias d='git difftool'
 alias gs='git status'
@@ -110,19 +111,15 @@ alias r='cargo run'
 alias t='cargo test'
 alias ft='cargo fmt'
 
-alias tmx='/Users/dima/tmx.sh'
-
-alias pls=/Users/dima/.local/bin/pls
-
-# TODO(dkorolev): Add `xs` for `xsel` on a Mac.
-
 export LESS='-R --no-init --quit-if-one-screen'
-
-# TODO(dkorolev): Make this a MacOS-only thing.
-alias xs='pbcopy'
 
 export PATH="$HOME/.local/bin:$PATH"
 
-# My Docker + Claude setup.
-alias dk="~/github/dimacurrentai/dotfiles/dk.sh"
+if [[ "$(uname)" == "Darwin" ]] ; then
+  alias tmx='/Users/dima/tmx.sh'
+  alias pls=/Users/dima/.local/bin/pls
+  alias xs='pbcopy'
+  alias dk="~/github/dimacurrentai/dotfiles/dk.sh"
+fi
+
 alias c=claude

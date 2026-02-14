@@ -1,0 +1,18 @@
+{
+    "description": "new Map ± (Shift+§) to ~",
+    "manipulators": [
+        {
+            "from": {
+                "key_code": "non_us_backslash",
+                "modifiers": { "mandatory": ["shift"] }
+            },
+            "to": [
+                {
+                    "key_code": "grave_accent_and_tilde",
+                    "modifiers": ["left_shift"]
+                }
+            ],
+            "type": "basic"
+        }
+    ]
+}

@@ -50,6 +50,42 @@ Done!
 wget df.dima.ai -O df.zip && unzip df.zip && mv dotfiles-main dotfiles
 ```
 
+## dk — Docker Dev Container
+
+`dk` launches an ephemeral Docker container with your user identity and a zsh shell.
+
+### Git repo passthrough
+
+When you run `dk` from inside a clean git repo, the repo is automatically available inside the container:
+
+1. `dk` clones your current branch into `.dk.tmp/upstream` and starts the container.
+2. Inside the container you land in `/app/<repo-name>/` — this is the clone.
+3. Make commits as usual.
+4. When you exit the container, `dk` detects new commits and prompts:
+   ```
+   Pull changes from dk container into <repo-name>? [Y/n]
+   ```
+   Pressing Enter (default: yes) fast-forward merges the changes into your host branch.
+
+If the host repo has uncommitted changes, `dk` refuses to start and lists what's dirty.
+
+Running `dk` from a non-git directory gives a plain container with no repo.
+
+### Claude Code in dk
+
+Claude Code is pre-installed in the dk container. On first use you need to authenticate once and save the credentials:
+
+1. Run `dk` — you'll see a message that Claude is not configured.
+2. Inside the container, run `claude` and complete the authentication flow.
+3. Run `save_claude_dk_setup` — this snapshots your `~/.claude` directory.
+4. Exit the container — `dk` picks up the snapshot and saves it to `~/.dk.claude_key` on the host.
+
+On subsequent runs, `dk` automatically restores `~/.claude` inside the container.
+
+The `c` alias runs `claude --dangerously-skip-permissions` for convenience.
+
+To re-authenticate, delete `~/.dk.claude_key` and repeat the steps above.
+
 ## Useful Commands
 
 ### SSH

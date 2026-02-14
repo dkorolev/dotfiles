@@ -46,18 +46,9 @@ if ! (cd "$SCRIPT_DIR/docker/dk"; make -q) ; then
   echo 'Rebuilt successful.'
 fi
 
-if [ -f "$HOME/.dk.claude_key" ]; then
-  cp "$HOME/.dk.claude_key" "$DK_TMP/dk.claude_key"
-else
-  rm -f "$DK_TMP/dk.claude_key"
-  echo ""
-  echo "Claude is not configured for dk. To set it up, run \`claude\` inside"
-  echo "the container, authenticate, then run \`save_claude_dk_setup\` to save."
-  echo ""
-fi
-
 docker run -it --hostname dk \
   -v "$DK_TMP:/tmp" \
+  -v dk-claude-auth:/app/.claude \
   -e DK_UID="$(id -u)" \
   -e DK_GID="$(id -g)" \
   -e DK_USER="$(whoami)" \
@@ -66,17 +57,6 @@ docker run -it --hostname dk \
   ${DK_GIT_USER_NAME:+-e "DK_GIT_USER_NAME=$DK_GIT_USER_NAME"} \
   ${DK_GIT_USER_EMAIL:+-e "DK_GIT_USER_EMAIL=$DK_GIT_USER_EMAIL"} \
   $(cat "$SCRIPT_DIR/docker/dk/tag")
-
-# After the container exits, check for saved Claude config.
-if [ -f "$DK_TMP/update.dk.claude_key" ]; then
-  if [ ! -f "$HOME/.dk.claude_key" ]; then
-    mv "$DK_TMP/update.dk.claude_key" "$HOME/.dk.claude_key"
-    echo "Claude config saved to ~/.dk.claude_key."
-  else
-    echo "~/.dk.claude_key already exists. To overwrite:"
-    echo "  mv $DK_TMP/update.dk.claude_key ~/.dk.claude_key"
-  fi
-fi
 
 # After the container exits, offer to merge changes back.
 if [ -n "$DK_REPO_ROOT" ] && [ -d "$DK_TMP/upstream" ]; then

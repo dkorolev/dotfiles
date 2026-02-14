@@ -19,11 +19,7 @@ fi
 
 cp /etc/skel/.zshrc /etc/skel/.dima.shellrc "$home/"
 echo "alias dk='echo \"\033[35mCOLORBLIND I GUESS?\033[0m\"'" >> "$home/.zshrc"
-if [ -f /tmp/dk.claude_key ]; then
-  base64 -d < /tmp/dk.claude_key | tar -C "$home" -xf -
-fi
 echo "alias c='claude --dangerously-skip-permissions'" >> "$home/.zshrc"
-echo "alias save_claude_dk_setup='tar -C $home -cf - .claude | base64 | tr -d \"\\n\" > /tmp/update.dk.claude_key && echo \"Done. Exit the container to apply.\"'" >> "$home/.zshrc"
 mkdir -p "$home/.cache/zsh"
 
 # Configure git: difftastic and user identity.

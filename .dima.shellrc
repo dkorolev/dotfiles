@@ -67,8 +67,9 @@ precmd() {
 
 setopt prompt_subst
 
-if [[ -n "${DK_SANDBOX:-}" ]] ; then
-  prompt='[%F{magenta}SANDBOX%f] %F{#0080ff}%d/%f ${vcs_info_msg_0_}$ '
+if [[ -n "${INSIDE_DK_ENV:-}" ]] ; then
+  prompt='[%B%F{magenta}SANDBOX%f%b] %F{#0080ff}%d/%f ${vcs_info_msg_0_}$ '
+  dk() { echo $'\e[1;35mCOLORBLIND I GUESS\e[0m' }
 elif [[ $USER == "toor" ]] ; then
   prompt='[%F{red}%m%f] wheel %F{green}%%%f '
 elif [[ $UID == 0 || $EUID == 0 ]] ; then

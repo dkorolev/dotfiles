@@ -34,7 +34,7 @@ ssh ubu "git -C '$REMOTE_DIR' config user.name '$git_name' && git -C '$REMOTE_DI
 echo "Pushed $DK_BRANCH → ubu:~/$REMOTE_DIR ($REMOTE_LABEL)"
 
 # SSH into ubu, landing in the repo directory.
-ssh -t ubu "cd '$REMOTE_DIR' && exec \$SHELL -l" || true
+ssh -t ubu "cd '$REMOTE_DIR' && INSIDE_DK_ENV=1 exec \$SHELL -l" || true
 
 # After exiting: pull changes back.
 echo ""

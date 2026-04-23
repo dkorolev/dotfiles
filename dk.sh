@@ -32,6 +32,7 @@ git_email=$(git -C "$repo_root" config user.email)
 ssh ubu "git -C '$REMOTE_DIR' config user.name '$git_name' && git -C '$REMOTE_DIR' config user.email '$git_email'"
 
 echo "Pushed $DK_BRANCH → ubu:~/$REMOTE_DIR ($REMOTE_LABEL)"
+echo "alias up='git fetch $REMOTE_LABEL && git merge --ff-only $REMOTE_LABEL/$DK_BRANCH'"
 
 # SSH into ubu, landing in the repo directory.
 ssh -t ubu "cd '$REMOTE_DIR' && INSIDE_DK_ENV=1 exec \$SHELL -l" || true

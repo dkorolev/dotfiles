@@ -35,7 +35,7 @@ echo "Pushed $DK_BRANCH → ubu:~/$REMOTE_DIR ($REMOTE_LABEL)"
 echo "alias up='git fetch $REMOTE_LABEL && git merge --ff-only $REMOTE_LABEL/$DK_BRANCH'"
 
 # SSH into ubu, landing in the repo directory.
-ssh -t ubu "cd '$REMOTE_DIR' && INSIDE_DK_ENV=1 exec \$SHELL -l" || true
+ssh -t -R 8765:127.0.0.1:8765 ubu "cd '$REMOTE_DIR' && INSIDE_DK_ENV=1 exec \$SHELL -l" || true
 
 # After exiting: pull changes back.
 echo ""

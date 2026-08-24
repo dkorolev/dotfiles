@@ -30,6 +30,21 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.bash_zsh_history
 
+# Completion. ~/.zshrc may run compinit itself, *after* it has finished
+# extending fpath -- running it here too would just rebuild the same dump.
+# So defer the decision to the first prompt: if compinit has already
+# happened by then, do nothing; otherwise (this repo's .zshrc on a fresh
+# machine, with nothing else calling compinit) do it here.
+_dima_compinit_once() {
+  if (( ! ${+_comps} )); then
+    mkdir -p ~/.cache/zsh
+    autoload -Uz compinit && compinit -C -d ~/.cache/zsh/zcompdump
+  fi
+  add-zsh-hook -d precmd _dima_compinit_once
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _dima_compinit_once
+
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'

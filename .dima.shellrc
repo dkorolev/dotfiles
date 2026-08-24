@@ -30,9 +30,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.bash_zsh_history
 
-autoload -Uz compinit && compinit -d ~/.cache/zsh/zcompdump
-rm -f ~/.zcompdump
-
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'

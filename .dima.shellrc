@@ -1,3 +1,7 @@
+# MacOS `ls` honors `--color=auto` only if `-G` is set or `COLORTERM` is non-empty.
+# Most terminals export `COLORTERM` themselves, `st`-based ones (ex. `shitty`) do not.
+export COLORTERM="${COLORTERM:-truecolor}"
+
 alias ls='ls --color=auto'
 alias jsb='js-beautify --indent-size=2 -n'
 

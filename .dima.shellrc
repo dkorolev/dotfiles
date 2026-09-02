@@ -113,6 +113,12 @@ if [[ "$(uname)" == "Darwin" ]] ; then
   alias cls='osascript -e "tell application \"System Events\" to keystroke \"k\" using command down"'
 fi
 
+# `fs`: toggle the terminal window between fullscreen and normal, via the
+# xterm window op CSI 10;2t. In `shitty` this needs `allowWindowOps = true`
+# in shitty.toml (its window is invisible to the macOS accessibility layer,
+# so globe+F and other system window shortcuts cannot reach it).
+fs() { printf '\e[10;2t' > /dev/tty; }
+
 alias d='git difftool'
 alias gs='git status'
 alias gp='git pull'

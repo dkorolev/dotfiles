@@ -127,3 +127,25 @@ if [[ -n "${INSIDE_DK_ENV:-}" ]] ; then
 else
   alias c=claude
 fi
+
+# A previous tmux client can leave mouse tracking on. Wheel events then sit
+# in the tty queue, and `tmux a` replays them as a copy-mode scroll burst.
+# Disable reporting, discard unread input, then run tmux; do the same after
+# the client exits so the next scroll does not refill the queue.
+_tmux_drop_queued_mouse() {
+  [[ -t 0 ]] || return
+  printf '\e[?1006l\e[?1003l\e[?1002l\e[?1000l\e[?1015l' > /dev/tty
+  if command -v perl >/dev/null 2>&1; then
+    perl -e 'use POSIX qw(tcflush TCIFLUSH); tcflush(0, TCIFLUSH)'
+  elif command -v python3 >/dev/null 2>&1; then
+    python3 -c 'import termios, sys; termios.tcflush(sys.stdin, termios.TCIFLUSH)'
+  fi
+}
+
+tmux() {
+  _tmux_drop_queued_mouse
+  command tmux "$@"
+  local st=$?
+  _tmux_drop_queued_mouse
+  return $st
+}

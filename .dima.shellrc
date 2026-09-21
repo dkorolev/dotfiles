@@ -128,6 +128,9 @@ else
   alias c=claude
 fi
 
+# Skip the Claude Code "do you trust this directory" dialog.
+export CLAUDE_CODE_SANDBOXED=1
+
 # A previous tmux client can leave mouse tracking on. Wheel events then sit
 # in the tty queue, and `tmux a` replays them as a copy-mode scroll burst.
 # Disable reporting, discard unread input, then run tmux; do the same after

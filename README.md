@@ -50,41 +50,31 @@ Done!
 wget df.dima.ai -O df.zip && unzip df.zip && mv dotfiles-main dotfiles
 ```
 
-## dk — Docker Dev Container
+## dk — Sandbox Dev Environment
 
-`dk` launches an ephemeral Docker container with your user identity and a zsh shell.
+`dk` SSHes into a remote machine (`ubu`) and sets up an isolated workspace with a zsh shell.
 
 ### Git repo passthrough
 
-When you run `dk` from inside a clean git repo, the repo is automatically available inside the container:
+When you run `dk` from inside a clean git repo, the repo is automatically pushed to the remote:
 
-1. `dk` clones your current branch into `.dk.tmp/upstream` and starts the container.
-2. Inside the container you land in `/app/<repo-name>/` — this is the clone.
-3. Make commits as usual.
-4. When you exit the container, `dk` detects new commits and prompts:
-   ```
-   Pull changes from dk container into <repo-name>? [Y/n]
-   ```
-   Pressing Enter (default: yes) fast-forward merges the changes into your host branch.
+1. `dk` creates a temporary bare repo on `ubu` with a random name (e.g. `ABCD-EFG-HIJK`).
+2. It pushes your current branch and checks it out on the remote.
+3. Your local `user.name` and `user.email` are forwarded to the remote repo.
+4. You land in `~/ABCD-EFG-HIJK/` inside an SSH session.
+5. Make commits as usual.
+6. When you exit, `dk` fetches and fast-forward merges any new commits back into your local branch. If the merge is not a fast-forward, the remote is preserved for manual resolution.
 
 If the host repo has uncommitted changes, `dk` refuses to start and lists what's dirty.
 
-Running `dk` from a non-git directory gives a plain container with no repo.
+Running `dk` from a non-git directory gives a plain SSH session with no repo.
 
-### Claude Code in dk
+### Inside the sandbox
 
-Claude Code is pre-installed in the dk container. On first use you need to authenticate once and save the credentials:
-
-1. Run `dk` — you'll see a message that Claude is not configured.
-2. Inside the container, run `claude` and complete the authentication flow.
-3. Run `save_claude_dk_setup` — this snapshots your `~/.claude` directory.
-4. Exit the container — `dk` picks up the snapshot and saves it to `~/.dk.claude_key` on the host.
-
-On subsequent runs, `dk` automatically restores `~/.claude` inside the container.
-
-The `c` alias runs `claude --dangerously-skip-permissions` for convenience.
-
-To re-authenticate, delete `~/.dk.claude_key` and repeat the steps above.
+- The prompt shows a bold magenta `[SANDBOX]` prefix.
+- The `INSIDE_DK_ENV` environment variable is set to `1`.
+- The `c` alias runs `claude --dangerously-skip-permissions`.
+- Running `dk` again from inside the sandbox is blocked (prints a warning).
 
 ## Useful Commands
 

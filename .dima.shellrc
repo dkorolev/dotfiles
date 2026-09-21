@@ -1,3 +1,7 @@
+# MacOS `ls` honors `--color=auto` only if `-G` is set or `COLORTERM` is non-empty.
+# Most terminals export `COLORTERM` themselves, `st`-based ones (ex. `shitty`) do not.
+export COLORTERM="${COLORTERM:-truecolor}"
+
 alias ls='ls --color=auto'
 alias jsb='js-beautify --indent-size=2 -n'
 
@@ -30,8 +34,20 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.bash_zsh_history
 
-autoload -Uz compinit && compinit -d ~/.cache/zsh/zcompdump
-rm -f ~/.zcompdump
+# Completion. ~/.zshrc may run compinit itself, *after* it has finished
+# extending fpath -- running it here too would just rebuild the same dump.
+# So defer the decision to the first prompt: if compinit has already
+# happened by then, do nothing; otherwise (this repo's .zshrc on a fresh
+# machine, with nothing else calling compinit) do it here.
+_dima_compinit_once() {
+  if (( ! ${+_comps} )); then
+    mkdir -p ~/.cache/zsh
+    autoload -Uz compinit && compinit -C -d ~/.cache/zsh/zcompdump
+  fi
+  add-zsh-hook -d precmd _dima_compinit_once
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _dima_compinit_once
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -96,6 +112,12 @@ zstyle ':completion:*' ignored-patterns 'Cargo.lock'
 if [[ "$(uname)" == "Darwin" ]] ; then
   alias cls='osascript -e "tell application \"System Events\" to keystroke \"k\" using command down"'
 fi
+
+# `fs`: toggle the terminal window between fullscreen and normal, via the
+# xterm window op CSI 10;2t. In `shitty` this needs `allowWindowOps = true`
+# in shitty.toml (its window is invisible to the macOS accessibility layer,
+# so globe+F and other system window shortcuts cannot reach it).
+fs() { printf '\e[10;2t' > /dev/tty; }
 
 alias d='git difftool'
 alias gs='git status'
